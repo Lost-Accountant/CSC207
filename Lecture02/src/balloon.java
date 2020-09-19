@@ -1,24 +1,24 @@
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+
 public class balloon {
     // make variables private
     private String color;
     private double capacity;
+    private int amount;
+    private boolean popped;
+    private static int numBalloons = 0;
 
-    // non-static constructor = initialization
-    public balloon(String color){
-        this.color = color;
-    }
-
-    public balloon(double capa){
-        this.capacity = capa;
-    }
-
-    // if user enter both constructor
-    // can reuse constructor to save space
-    public balloon(String color, double capa){
-        //this(capa);
-        //this(color);
+    public balloon(String color, double capa,
+                   int amount, boolean popped){
         this.color = color;
         this.capacity = capa;
+        this.amount = amount;
+        this.popped = popped;
+        numBalloons += 1;
+    }
+
+    public balloon(){
+        this("invisible", 1.0, 0, false);
     }
 
     // interface methods
@@ -31,6 +31,10 @@ public class balloon {
         return this.capacity;
     }
 
+    public static int getNumBalloons(){
+        return numBalloons;
+    }
+
     // Setter
     public void setColor(String color){
         this.color = color;
@@ -38,6 +42,16 @@ public class balloon {
 
     public void setCapacity(double c){
         this.capacity = c;
+    }
+
+    public static void main(String[] args){
+        balloon b1 = new balloon();
+        System.out.println(getNumBalloons());
+        System.out.println(b1);
+        balloon b2 = new balloon("green", 50, 500, true);
+        System.out.println(b2);
+        balloon b3 = new balloon();
+        System.out.println(getNumBalloons());
     }
 }
 
