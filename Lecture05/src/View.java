@@ -8,6 +8,7 @@ import java.util.Observer;
 public class View extends TextField implements Observer{
     public View(){
         this.setText("placeholder");
+        // text shown at view box
     }
 
     @Override
@@ -15,5 +16,6 @@ public class View extends TextField implements Observer{
         Model model = (Model) o;
         // specify the observable is a Model named o
         this.setText(model.a);
+        // change text shown at view box
     }
 }

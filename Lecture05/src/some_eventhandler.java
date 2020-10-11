@@ -11,6 +11,7 @@ public class some_eventhandler implements EventHandler<ActionEvent>{
     public void handle(ActionEvent event){
         // this line is important, without it the GUI will not update
         // connect Model with View
+        // when button in GUI pressed. Event listener calls for change.
         model.You_changed();
         System.out.println(model.a);
     }
