@@ -36,7 +36,7 @@ public class Game {
     }
 
     public boolean equals(Game g2){
-        return (this.id == g2.id && this.players == g2.players);
+        return this.id == g2.id && this.players == g2.players;
     }
 
     public int size(){
@@ -48,16 +48,26 @@ public class Game {
     }
 
     public boolean hasSamePlayers(Game g2){
-        for(int i = 0; i != this.players.size(); i++){
-            if (g2.hasPlayer(this.players.get(i))) {
-                return true;
+        if (this.size() != 0 && g2.size() != 0){
+            for (int i = 0; i != this.size(); i++){
+                if (g2.hasPlayer(this.getPlayers().get(i))){
+                    return true;
+                }
             }
         }
         return false;
     }
 
     public String toString(){
-        return "";
+        if (this.players.size() != 0) {
+            String players = this.players.get(0).getName();
+            for (int i = 1; i != this.players.size(); i++) {
+                players += "," + this.players.get(i).getName();
+            }
+            return (this.getId() + " (" + players + ")");
+        } else {
+            return (this.getId() + " ()");
+        }
     }
 
 }

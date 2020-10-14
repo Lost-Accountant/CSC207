@@ -26,6 +26,7 @@ public class Player {
 
     public void addGame(Game g){
         this.games.add(g);
+        g.addPlayer(this);
     }
 
     public ArrayList<Game> getGames(){
@@ -33,9 +34,8 @@ public class Player {
     }
 
     public boolean equals(Player p2){
-        return (this.name == p2.name &&
-                this.rank == p2.rank &&
-                this.games == p2.games);
+        return this.name == p2.name &&
+                this.rank == p2.rank;
     }
 
     public String toString() {
