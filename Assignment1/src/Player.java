@@ -8,23 +8,46 @@ public class Player {
 
     private String name;
     private int rank;
-    private ArrayList games;
+    private ArrayList<Game> games;
 
-    Player(String name, int rank){
+    public Player(String name, int rank){
+        this.name = name;
+        this.rank = rank;
+        this.games = new ArrayList<Game>();
     }
 
     public String getName(){
-        return ("");
+        return(this.name);
     }
 
     public int getRank(){
-        return (-1);
+        return (this.rank);
     }
 
-    public void addGame(Game g){}
+    public void addGame(Game g){
+        this.games.add(g);
+    }
 
-    public Game getGames(){
-        return null;
+    public ArrayList<Game> getGames(){
+        return this.games;
+    }
+
+    public boolean equals(Player p2){
+        return (this.name == p2.name &&
+                this.rank == p2.rank &&
+                this.games == p2.games);
+    }
+
+    public String toString() {
+        if (this.games.size() == 0) {
+            return (this.name.toString() + ", " + this.rank);
+        } else {
+            String temp = this.getName() + ", " + this.getRank();
+            for (int i = 0; i != this.games.size(); i++){
+                temp += System.lineSeparator() + this.games.get(i).getId();
+            }
+            return temp;
+        }
     }
 
 }

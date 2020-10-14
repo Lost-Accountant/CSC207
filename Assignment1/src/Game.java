@@ -26,6 +26,15 @@ public class Game {
         return this.players.contains(p);
     }
 
+    public boolean contains(Game g){
+        for (int i = 0; i != g.size(); i++){
+            if (!this.hasPlayer(g.players.get(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean equals(Game g2){
         return (this.id == g2.id && this.players == g2.players);
     }

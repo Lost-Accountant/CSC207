@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TournamentTest {
 
     @Test
-    void testPlayerGetName() {
+    public void testPlayerGetName() {
         Player p = new Player("Serena Williams", 1);
         assertEquals("Serena Williams", p.getName());
     }
