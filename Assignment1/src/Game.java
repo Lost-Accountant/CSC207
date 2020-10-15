@@ -36,7 +36,9 @@ public class Game {
     }
 
     public boolean equals(Game g2){
-        return this.id == g2.id && this.players == g2.players;
+        return this.id == g2.id &&
+                this.players.containsAll(g2.players) &&
+                g2.players.containsAll(this.players);
     }
 
     public int size(){
@@ -45,6 +47,9 @@ public class Game {
 
     public void addPlayer(Player p){
         this.players.add(p);
+        if (!p.getGames().contains(this)){
+            p.addGame(this);
+        }
     }
 
     public boolean hasSamePlayers(Game g2){

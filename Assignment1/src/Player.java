@@ -26,7 +26,9 @@ public class Player {
 
     public void addGame(Game g){
         this.games.add(g);
-        g.addPlayer(this);
+        if (!g.hasPlayer(this)) {
+            g.addPlayer(this);
+        }
     }
 
     public ArrayList<Game> getGames(){
