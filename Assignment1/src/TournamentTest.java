@@ -3,6 +3,7 @@
  */
 
 import org.junit.Test;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 //import org.junit.jupiter.api.After;
@@ -265,5 +266,19 @@ public class TournamentTest {
                 + System.lineSeparator() + g3.getId() + System.lineSeparator() + g4.getId();
         assertEquals(exp, res);
     }
-    
+
+    @Test
+    public void testGetGame() {
+        Game g1 = new Game("A1");
+        Game g2 = new Game("C3");
+        Game g3 = new Game("D4");
+        Game g4 = new Game("B5");
+        ArrayList<Game> allGames = new ArrayList<Game>();
+        allGames.add(g1);
+        allGames.add(g2);
+        allGames.add(g3);
+        allGames.add(g4);
+        Game g = new Game("D4");
+        assertTrue(Tournament.getGame("D4", allGames).equals(g));
+    }
 }
