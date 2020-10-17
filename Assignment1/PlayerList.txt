@@ -1,2 +1,4 @@
 Selena Williams, 1 | A1 | C3 | A2 |
 Alex Mason, 7 | B1 | C3 | A2 | A4 | B2
+John Smith, 2 | A1 | C3 | A4 | B2
+Eric Cartman, 1 | A2 | B1 | A4

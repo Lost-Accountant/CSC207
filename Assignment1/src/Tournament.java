@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -40,9 +37,7 @@ public class Tournament {
                         Game newGame = new Game(currentGameID);
                         newGame.addPlayer(newPlayer);
                         allGames.add(newGame);
-                        System.out.println("not exist");
                     } else { // if has game already
-                        System.out.println("exist");
                         Game existingGame = getGame(currentGameID, allGames);
                         existingGame.addPlayer(newPlayer);
                     }
@@ -55,7 +50,23 @@ public class Tournament {
         System.out.println(allPlayers);
 
         // user interaction
+        try (BufferedReader keyboard = new BufferedReader((new InputStreamReader(System.in)))){
+            // Get the first name of an output file from standard input.
+            System.out.print("Enter the name of the game. Type 'exit' if want to exit");
+            String gameName = keyboard.readLine();
 
+            // only stop when typed exit
+            while (!gameName.equals("exit")){
+                // has this game
+                if (hasGame(gameName, allGames)){
+                    System.out.println(getGame(gameName, allGames).toString());
+                } else {
+                    System.out.println("This game does not exist");
+                }
+                System.out.print("Enter the name of the game. Type 'exit' if want to exit");
+                gameName = keyboard.readLine();
+            }
+        }
     }
 
     public static boolean hasGame(String gameID, ArrayList<Game> allGames){
