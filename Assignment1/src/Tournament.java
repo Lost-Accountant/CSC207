@@ -25,23 +25,25 @@ public class Tournament {
             while (line != null) {
                 // separate players and games
                 String[] separated = line.split("\\|");
-                String[] playerInfo = separated[0].replaceAll("\\s+","").split("\\,");
+                String[] playerInfo = separated[0].split("\\,");
 
                 // construct player
-                Player newPlayer = new Player(playerInfo[0], Integer.valueOf(playerInfo[1]));
+                Player newPlayer = new Player(playerInfo[0].trim(), Integer.valueOf(playerInfo[1].trim()));
                 allPlayers.add(newPlayer);
 
                 // each game in a player's line
                 for (int i = 1; i < separated.length; i++){
-                    // game ID not in record
-                    if (!hasGame(separated[i].trim(), allGames)){
-                        // construct game
-                        Game newGame = new Game(separated[i].trim());
-                        // add player to new game
+                    String currentGameID = separated[i].trim();
+                    // check whether game already in list
+                    // if not, add it
+                    if (!hasGame(currentGameID, allGames)){
+                        Game newGame = new Game(currentGameID);
                         newGame.addPlayer(newPlayer);
                         allGames.add(newGame);
-                    } else { // game ID in record
-                        Game existingGame = getGame(separated[i].trim(), allGames);
+                        System.out.println("not exist");
+                    } else { // if has game already
+                        System.out.println("exist");
+                        Game existingGame = getGame(currentGameID, allGames);
                         existingGame.addPlayer(newPlayer);
                     }
                 }
@@ -53,30 +55,26 @@ public class Tournament {
         System.out.println(allPlayers);
 
         // user interaction
-    }
 
-    // can rewrite all following methods since game.equals only test ID.
-
-    public static ArrayList<String> getGamesId(ArrayList<Game> allGames){
-        ArrayList<String> allGamesID = new ArrayList<String>();
-        for (int i = 0; i < allGames.size(); i++){
-            allGamesID.add(allGames.get(i).getId());
-        }
-        return allGamesID;
     }
 
     public static boolean hasGame(String gameID, ArrayList<Game> allGames){
-        return (getGamesId(allGames).contains(gameID));
+        Game tempGame = new Game(gameID);
+        for (int i = 0; i < allGames.size(); i++){
+            if (tempGame.equals(allGames.get(i))){
+                return true;
+            }
+        }
+        return false; // if no return true
     }
 
     public static Game getGame(String gameID, ArrayList<Game> allGames){
-        // assume hasGame is true
-        int i = 0;
-        Game returnedGame = allGames.get(i);
-        while (gameID != returnedGame.getId()){
-            i += 1;
-            returnedGame = allGames.get(i);
+        for (int i = 0; i < allGames.size(); i++){
+            Game returnedGame = allGames.get(i);
+            if (returnedGame.getId().equals(gameID)){
+                return returnedGame;
+            }
         }
-        return returnedGame;
+        return null;
     }
 }

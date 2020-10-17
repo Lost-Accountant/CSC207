@@ -36,7 +36,7 @@ public class Game {
     }
 
     public boolean equals(Game g2){
-        return this.id == g2.id;
+        return (this.id.equals(g2.id));
     }
 
     public int size(){

@@ -281,4 +281,22 @@ public class TournamentTest {
         Game g = new Game("D4");
         assertTrue(Tournament.getGame("D4", allGames).equals(g));
     }
+
+    @Test
+    public void testHasGame() {
+        Game g1 = new Game("A1");
+        Game g2 = new Game("C3");
+        Player p1 = new Player("John Smith", 2);
+        g2.addPlayer(p1);
+        Game g3 = new Game("D4");
+        Game g4 = new Game("B5");
+        ArrayList<Game> allGames = new ArrayList<Game>();
+        allGames.add(g1);
+        allGames.add(g2);
+        allGames.add(g3);
+        allGames.add(g4);
+
+        assertTrue(Tournament.hasGame(" C3 ".trim(), allGames));
+        assertFalse(Tournament.hasGame("B6", allGames));
+    }
 }
