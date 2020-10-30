@@ -113,7 +113,7 @@ public class OthelloBoard {
 		// loop through 2 dimension
 		for (int i=0; i < board.length; i++){
 			for (int j=0; j < board.length; j++){
-				if (board[i][j] == player){
+				if (getToken(i,j) == player){
 					count += 1;
 				}
 			}
@@ -146,18 +146,17 @@ public class OthelloBoard {
 	 *         such pattern
 	 */
 	private char checkForPattern(int row, int col, int drow, int dcol) {
-		// TODO: Complete this method (Task 1.2)
 		char patternDetector = EMPTY;
 		while (validCoordinate(row, col)){
-			if (board[row][col] != EMPTY){
+			if (getToken(row, col) != EMPTY){
 				// if first encounter
 				if (patternDetector == EMPTY){
-					patternDetector = board[row][col];
+					patternDetector = getToken(row, col);
 				} else { // if not first encounter
 					// check whether different
-					if (patternDetector != board[row][col]){
+					if (patternDetector != getToken(row, col)){
 						// return when detect first time difference
-						return board[row][col];
+						return getToken(row, col);
 					}
 				}
 
@@ -188,8 +187,18 @@ public class OthelloBoard {
 	 *         board is reached before seeing a player token)
 	 */
 	private int flip(int row, int col, int drow, int dcol, char player) {
-		// TODO: Complete this method (Task 1.3)
-		return 0;
+		// assume after checked valid pattern
+		// assume starting from a position with player on it
+		// counter for number of flipped
+		int counter = 0;
+		while (validCoordinate(row, col)){
+			if (getToken(row, col) != player){
+				setToken(row, col, player);
+				counter += 1;
+			} else { // reach same token, end of pattern
+				return counter;
+		}
+		return counter;
 	}
 
 	/**
