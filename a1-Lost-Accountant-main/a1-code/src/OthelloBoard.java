@@ -160,11 +160,9 @@ public class OthelloBoard {
 				}
 			}
 			// after whole loop, didn't meet different one
-			return EMPTY;
 
-		} else { // first position is empty
-			return EMPTY;
 		}
+		return EMPTY;
 
 	}
 
@@ -187,22 +185,26 @@ public class OthelloBoard {
 	 *         board is reached before seeing a player token)
 	 */
 	private int flip(int row, int col, int drow, int dcol, char player) {
-		// assume after checked valid pattern
-		// assume starting from a position with player on it
-		// counter for number of flipped
-		int counter = 0;
-		while (validCoordinate(row, col)) {
-			if (getToken(row, col) != player) {
-				setToken(row, col, player);
-				counter += 1;
-			} else { // reach same token, end of pattern
-				return counter;
+		// check for valid pattern
+		if (checkForPattern(row, col, drow, dcol) == player) {
+			// assume starting from a position with player on it
+			// counter for number of flipped
+			int counter = 0;
+			while (validCoordinate(row, col)) {
+				if (getToken(row, col) != player) {
+					setToken(row, col, player);
+					counter += 1;
+				} else { // reach same token, end of pattern
+					return counter;
+				}
+				// increment
+				row += drow;
+				col += dcol;
 			}
-			// increment
-			row += drow;
-			col += dcol;
+			return counter;
+		} else {
+			return -1;
 		}
-		return counter;
 	}
 	/**
 	 * Makes a move for player at position (row,col) according to Othello rules,
@@ -231,9 +233,19 @@ public class OthelloBoard {
 		}
 		// else
 		// check all direction
+		int flipCounter = 0;
+		for (int drow=-1; drow < 2; drow++){
+			for (int dcol=-1; dcol < 2; dcol++){
+				// if can find the same player for pattern
+				// position (0,0) should be EMPTY, which should not trigger flip
+				flipCounter += flip(row+drow, col+dcol, drow, dcol, player);
+			}
+		}
 
-
+		// return true only if anything flipped
+		return (flipCounter > 0);
 	}
+
 
 
 	/**
