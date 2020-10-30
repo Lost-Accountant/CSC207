@@ -109,7 +109,6 @@ public class OthelloBoard {
 	 * @return the number of tokens on the board for the given player
 	 */
 	public int getCount(char player) {
-		// TODO: Complete this method (Task 1.1)
 		int count = 0;
 		// loop through 2 dimension
 		for (int i=0; i < board.length; i++){
@@ -148,6 +147,25 @@ public class OthelloBoard {
 	 */
 	private char checkForPattern(int row, int col, int drow, int dcol) {
 		// TODO: Complete this method (Task 1.2)
+		char patternDetector = EMPTY;
+		while (validCoordinate(row, col)){
+			if (board[row][col] != EMPTY){
+				// if first encounter
+				if (patternDetector == EMPTY){
+					patternDetector = board[row][col];
+				} else { // if not first encounter
+					// check whether different
+					if (patternDetector != board[row][col]){
+						// return when detect first time difference
+						return board[row][col];
+					}
+				}
+
+			}
+			row += drow;
+			col += dcol;
+		}
+		// at the end, nothing found or all same player
 		return EMPTY;
 	}
 
