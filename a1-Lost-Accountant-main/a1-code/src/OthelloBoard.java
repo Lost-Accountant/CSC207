@@ -146,26 +146,26 @@ public class OthelloBoard {
 	 *         such pattern
 	 */
 	private char checkForPattern(int row, int col, int drow, int dcol) {
-		char patternDetector = EMPTY;
-		while (validCoordinate(row, col)){
-			if (getToken(row, col) != EMPTY){
-				// if first encounter
-				if (patternDetector == EMPTY){
-					patternDetector = getToken(row, col);
-				} else { // if not first encounter
-					// check whether different
-					if (patternDetector != getToken(row, col)){
-						// return when detect first time difference
-						return getToken(row, col);
-					}
-				}
+		// if first position not empty
+		if (getToken(row, col) != EMPTY){
+			char patternDetector = getToken(row, col);
+			while (validCoordinate(row+drow, col+dcol)){ // if next valid
+				// move to next
+				row += drow;
+				col += dcol;
 
+				// check for next
+				if (patternDetector != getToken(row, col)){
+					return getToken(row, col);
+				}
 			}
-			row += drow;
-			col += dcol;
+			// after whole loop, didn't meet different one
+			return EMPTY;
+
+		} else { // first position is empty
+			return EMPTY;
 		}
-		// at the end, nothing found or all same player
-		return EMPTY;
+
 	}
 
 	/**
@@ -191,16 +191,19 @@ public class OthelloBoard {
 		// assume starting from a position with player on it
 		// counter for number of flipped
 		int counter = 0;
-		while (validCoordinate(row, col)){
-			if (getToken(row, col) != player){
+		while (validCoordinate(row, col)) {
+			if (getToken(row, col) != player) {
 				setToken(row, col, player);
 				counter += 1;
 			} else { // reach same token, end of pattern
 				return counter;
+			}
+			// increment
+			row += drow;
+			col += dcol;
 		}
 		return counter;
 	}
-
 	/**
 	 * Makes a move for player at position (row,col) according to Othello rules,
 	 * making appropriate modifications to the board. That is, in ALL directions
@@ -221,7 +224,15 @@ public class OthelloBoard {
 	public boolean move(int row, int col, char player) {
 		// TODO: Complete this method (Task 1.4)
 		// HINT: Use any relevant, existing methods as a helper method here!!
-		return false;
+
+		// check invalid coordinate or taken
+		if (!validCoordinate(row, col) || (getToken(row, col) != EMPTY)){
+			return false;
+		}
+		// else
+		// check all direction
+
+
 	}
 
 
