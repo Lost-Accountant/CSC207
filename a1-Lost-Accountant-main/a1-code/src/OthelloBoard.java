@@ -99,7 +99,7 @@ public class OthelloBoard {
 	 *         a valid position on an 8x8 board.
 	 */
 	private boolean validCoordinate(int row, int col) {
-		return ((row >= 0 && row <= size) && (col >= 0 && col <= size));
+		return ((row >= 0 && row < size) && (col >= 0 && col < size));
 	}
 
 	/**
@@ -146,15 +146,23 @@ public class OthelloBoard {
 	 *         such pattern
 	 */
 	private char checkForPattern(int row, int col, int drow, int dcol) {
-		// if first position not empty
-		if (getToken(row, col) != EMPTY){
+		// starting position can be occupied.
+		// should be a universal method
+
+		// first next is not empty
+		row += drow;
+		col += dcol;
+
+		// both direction to be zero will set while loop non stop
+		if (getToken(row, col) != EMPTY && (drow != 0 || dcol != 0)){
+			// record first saw
 			char patternDetector = getToken(row, col);
 			while (validCoordinate(row+drow, col+dcol)){ // if next valid
 				// move to next
 				row += drow;
 				col += dcol;
 
-				// check for next
+				// check for next, compared against first saw
 				if (patternDetector != getToken(row, col)){
 					return getToken(row, col);
 				}
@@ -190,6 +198,10 @@ public class OthelloBoard {
 			// assume starting from a position with player on it
 			// counter for number of flipped
 			int counter = 0;
+			// move to first next after starting position
+			row += drow;
+			col += dcol;
+
 			while (validCoordinate(row, col)) {
 				if (getToken(row, col) != player) {
 					setToken(row, col, player);
@@ -224,7 +236,6 @@ public class OthelloBoard {
 	 * @return true if player makes a mark successfully at (row, col), false otherwise
 	 */
 	public boolean move(int row, int col, char player) {
-		// TODO: Complete this method (Task 1.4)
 		// HINT: Use any relevant, existing methods as a helper method here!!
 
 		// check invalid coordinate or taken
@@ -233,17 +244,19 @@ public class OthelloBoard {
 		}
 		// else
 		// check all direction
-		int flipCounter = 0;
 		for (int drow=-1; drow < 2; drow++){
 			for (int dcol=-1; dcol < 2; dcol++){
 				// if can find the same player for pattern
 				// position (0,0) should be EMPTY, which should not trigger flip
-				flipCounter += flip(row+drow, col+dcol, drow, dcol, player);
+				// only flip after valid pattern
+				flip(row, col, drow, dcol, player);
 			}
 		}
+		// make the move of chaning the board
+		setToken(row, col, player);
 
 		// return true only if anything flipped
-		return (flipCounter > 0);
+		return true;
 	}
 
 
