@@ -148,8 +148,7 @@ public class OthelloBoard {
 	private char checkForPattern(int row, int col, int drow, int dcol) {
 		// starting position can be occupied.
 		// should be a universal method
-		row += drow;
-		col += dcol;
+
 
 		// both direction to be zero will set while loop non stop
 		if (getToken(row, col) != EMPTY && (drow != 0 || dcol != 0)){
