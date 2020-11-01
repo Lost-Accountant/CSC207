@@ -148,8 +148,6 @@ public class OthelloBoard {
 	private char checkForPattern(int row, int col, int drow, int dcol) {
 		// starting position can be occupied.
 		// should be a universal method
-
-		// first next is not empty
 		row += drow;
 		col += dcol;
 
@@ -194,13 +192,10 @@ public class OthelloBoard {
 	 */
 	private int flip(int row, int col, int drow, int dcol, char player) {
 		// check for valid pattern
-		if (checkForPattern(row, col, drow, dcol) == player) {
+		if (checkForPattern(row, col, drow, dcol) == player && getToken(row, col) != EMPTY) {
 			// assume starting from a position with player on it
 			// counter for number of flipped
 			int counter = 0;
-			// move to first next after starting position
-			row += drow;
-			col += dcol;
 
 			while (validCoordinate(row, col)) {
 				if (getToken(row, col) != player) {
