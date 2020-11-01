@@ -191,7 +191,7 @@ public class OthelloBoard {
 	 */
 	private int flip(int row, int col, int drow, int dcol, char player) {
 		// check for valid pattern
-		if (checkForPattern(row, col, drow, dcol) == player && getToken(row, col) != EMPTY) {
+		if (checkForPattern(row, col, drow, dcol) != EMPTY) {
 			// assume starting from a position with player on it
 			// counter for number of flipped
 			int counter = 0;
