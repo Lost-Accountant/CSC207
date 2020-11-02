@@ -25,7 +25,7 @@ public class Othello {
 	/**
 	 * Returns the number of tokens on this board for the given player.
 	 * 
-	 * @param character representing player P1 or P2
+	 * @param player representing player P1 or P2
 	 * @return the number of tokens on this board for the given player 
 	 */
 	public int getCount(char player) {
@@ -47,7 +47,26 @@ public class Othello {
 		//			player or EMPTY if no more moves are possible (there is a method
 		//			in OthelloBoard that can help you determine this)
 		//		 This method also updates the numMoves counter if the move was successful
-		return false;
+
+		// check if no move left for current player
+		if (board.hasMove() != OthelloBoard.BOTH || board.hasMove() != getWhoseTurn()){
+			// no move left
+			return false;
+		}	else {
+			// still has move for current player
+			// check whether successful move
+			boolean moveResult = board.move(row, col, getWhoseTurn());
+
+			// update next turn
+			// check if move left
+			if (board.hasMove() == board.EMPTY){ // no move left
+				this.whoseTurn = board.EMPTY;
+			} else { // still has move left
+				this.whoseTurn = OthelloBoard.otherPlayer(getWhoseTurn());
+			}
+
+			return true;
+		}
 	}
 
 	/**
