@@ -41,31 +41,35 @@ public class Othello {
 	 * @return true if the move was successfully made, false otherwise
 	 */
 	public boolean move(int row, int col) {
-		// TODO: Complete this method (Task 2.1)
 		// Hint: Use existing methods (e.g. from OthelloBoard class) as helpers here
 		//		 This method should also modify whoseTurn it is to be the next
 		//			player or EMPTY if no more moves are possible (there is a method
 		//			in OthelloBoard that can help you determine this)
 		//		 This method also updates the numMoves counter if the move was successful
 
-		// check if no move left for current player
-		if (board.hasMove() != OthelloBoard.BOTH || board.hasMove() != getWhoseTurn()){
-			// no move left
+		// if current player cannot make a move, false
+		if (isGameOver() || board.hasMove() == OthelloBoard.otherPlayer(getWhoseTurn())){
 			return false;
-		}	else {
-			// still has move for current player
-			// check whether successful move
+		} else { // game not over and not only opposite player has moves left
+			// make a move at desired place
 			boolean moveResult = board.move(row, col, getWhoseTurn());
 
-			// update next turn
-			// check if move left
-			if (board.hasMove() == board.EMPTY){ // no move left
-				this.whoseTurn = board.EMPTY;
-			} else { // still has move left
+			// check whether desired move was valid
+			if (moveResult){
+				this.numMoves += 1;
 				this.whoseTurn = OthelloBoard.otherPlayer(getWhoseTurn());
+			} else { // if made an invalid move, terminates
+				return false;
+			}
+
+			// check whether game over
+			// don't call isGameOver because it is passive. It doesn't actively check the board.
+			if (board.hasMove() == OthelloBoard.EMPTY){
+				this.whoseTurn = OthelloBoard.EMPTY;
 			}
 
 			return true;
+
 		}
 	}
 
@@ -79,11 +83,21 @@ public class Othello {
 	 * 			for EMPTY if there is no winner or the game is not finished.
 	 */
 	public char getWinner() {
-		// TODO: Complete this method (Task 2.2)
 		// Hint: Use existing methods as helpers here
 		//		 Use OthelloBoard.P1, OthelloBoard.P2, etc. to access the board tokens
-		return OthelloBoard.EMPTY;
+		if (!isGameOver()){ // game still not finished
+			return OthelloBoard.EMPTY;
+		} else { // nobody's turn.
+			// check who has more token
+			if (board.getCount(OthelloBoard.P1) > board.getCount(OthelloBoard.P2)){
+				return OthelloBoard.P1;
+			} else if (board.getCount(OthelloBoard.P1) < board.getCount(OthelloBoard.P2)){
+				return OthelloBoard.P2;
+			} else {
+				return OthelloBoard.BOTH;
+			}
 		}
+	}
 
 	/**
 	 * Returns true iff the game is over (no player can move next).

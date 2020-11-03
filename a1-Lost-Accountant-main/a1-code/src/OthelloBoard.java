@@ -154,7 +154,7 @@ public class OthelloBoard {
 		if (getToken(row, col) != EMPTY && (drow != 0 || dcol != 0)){
 			// record first saw
 			char patternDetector = getToken(row, col);
-			while (validCoordinate(row+drow, col+dcol)){ // if next valid
+			while (validCoordinate(row+drow, col+dcol) && patternDetector != EMPTY){ // if next valid
 				// move to next
 				row += drow;
 				col += dcol;
@@ -232,25 +232,30 @@ public class OthelloBoard {
 	public boolean move(int row, int col, char player) {
 		// HINT: Use any relevant, existing methods as a helper method here!!
 
+		int successFlipDirection = 0;
 		// check invalid coordinate or taken
 		if (!validCoordinate(row, col) || (getToken(row, col) != EMPTY)){
 			return false;
-		}
-		// else
-		// check all direction
-		for (int drow=-1; drow < 2; drow++){
-			for (int dcol=-1; dcol < 2; dcol++){
-				// if can find the same player for pattern
-				// position (0,0) should be EMPTY, which should not trigger flip
-				// only flip after valid pattern
-				flip(row, col, drow, dcol, player);
+		} else {
+			// else
+			// check all direction
+			for (int drow = -1; drow < 2; drow++) {
+				for (int dcol = -1; dcol < 2; dcol++) {
+					// if can find the same player for pattern
+					// only flip after valid pattern
+					successFlipDirection += flip(row + drow, col + dcol, drow, dcol, player);
+				}
+			}
+
+			if (successFlipDirection > -9){ // at least one successful slip
+				// make the move of chaning the board
+				setToken(row, col, player);
+				// return true only if anything flipped
+				return true;
+			} else {
+				return false;
 			}
 		}
-		// make the move of chaning the board
-		setToken(row, col, player);
-
-		// return true only if anything flipped
-		return true;
 	}
 
 
