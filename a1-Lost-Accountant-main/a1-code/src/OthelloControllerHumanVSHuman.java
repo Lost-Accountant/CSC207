@@ -15,6 +15,9 @@ public class OthelloControllerHumanVSHuman {
 		this.player2 = new PlayerHuman(this.othello, OthelloBoard.P2);
 	}
 
+	/**
+	 *
+	 */
 	public void play() {
 		
 		while (!othello.isGameOver()) {

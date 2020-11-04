@@ -12,12 +12,21 @@ public class PlayerHuman {
 	private Othello othello;
 	private char player;
 
+	/**
+	 * Cpmstrict a PlayerHuman player with the given symbol and Othello game.
+	 * @param othello the Othello game this player is in
+	 * @param player the symbol of this player
+	 */
 	public PlayerHuman(Othello othello, char player) {
 		
 		this.othello = othello;
 		this.player = player;
 	}
 
+	/**
+	 * Returns and activates the move based on given coordinates.
+	 * @return the move desired by the player
+	 */
 	public Move getMove() {
 		
 		int row = getMove("row: ");
@@ -25,6 +34,11 @@ public class PlayerHuman {
 		return new Move(row, col);
 	}
 
+	/**
+	 * Return the desired row number or column number from the player for their move
+	 * @param message the row or column indication for input
+	 * @return the row or column number of player's move
+	 */
 	private int getMove(String message) {
 		
 		int move, lower = 0, upper = 7;
