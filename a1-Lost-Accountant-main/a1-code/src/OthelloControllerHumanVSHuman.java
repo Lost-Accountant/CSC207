@@ -16,7 +16,9 @@ public class OthelloControllerHumanVSHuman {
 	}
 
 	/**
-	 *
+	 * Activates the game, and keeps instructing the player in turn to
+	 * make their move, and reports the move, and stops when the game
+	 * is detected to be over.
 	 */
 	public void play() {
 		
@@ -37,10 +39,19 @@ public class OthelloControllerHumanVSHuman {
 		this.reportFinal();
 	}
 
+	/**
+	 * Report and print out the move just made by the player
+	 * @param whosTurn the player in turn that made the move
+	 * @param move the move made by the player
+	 */
 	private void reportMove(char whosTurn, Move move) {
 		System.out.println(whosTurn + " makes move " + move + "\n");
 	}
 
+	/**
+	 * Prints out the layout of the board, the count for both players
+	 * and indication of whose turn next.
+	 */
 	private void report() {
 		
 		String s = othello.getBoardString() + OthelloBoard.P1 + ":" 
@@ -50,6 +61,10 @@ public class OthelloControllerHumanVSHuman {
 		System.out.println(s);
 	}
 
+	/**
+	 * Prints out the layout of the board, the count for both players,
+	 * and the final winner for the game.
+	 */
 	private void reportFinal() {
 		
 		String s = othello.getBoardString() + OthelloBoard.P1 + ":" 
