@@ -6,6 +6,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../Midterm/midtermSolutions">
+      <sourceFolder url="file://$MODULE_DIR$/../Midterm/midtermSolutions/Animals" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../Midterm/midtermSolutions" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../Midterm/midtermSolutions/Dice" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../Midterm/midtermSolutions/Dice2" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../a1-Lost-Accountant-main">
       <sourceFolder url="file://$MODULE_DIR$/../a1-Lost-Accountant-main/a1-code/src" isTestSource="false" />
     </content>
