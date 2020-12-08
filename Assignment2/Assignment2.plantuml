@@ -1,0 +1,176 @@
+@startuml
+
+title __ASSIGNMENT2's Class Diagram__\n
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.Circle {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.Circle {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.Paint {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.Paint {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.PaintModel {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.PaintModel {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.PaintPanel {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.PaintPanel {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.Point {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.Point {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.ShapeChooserPanel {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.ShapeChooserPanel {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.View {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.paint {
+    class ca.utoronto.utm.paint.View {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.scribble {
+    class ca.utoronto.utm.scribble.Pair {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.scribble {
+    class ca.utoronto.utm.scribble.Pair {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.scribble {
+    class ca.utoronto.utm.scribble.Scribble {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.scribble {
+    class ca.utoronto.utm.scribble.Scribble {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.scribble {
+    class ca.utoronto.utm.scribble.ScribblePanel {
+    }
+  }
+  
+
+  namespace ca.utoronto.utm.scribble {
+    class ca.utoronto.utm.scribble.ScribblePanel {
+    }
+  }
+  
+
+  ca.utoronto.utm.paint.Circle o-- ca.utoronto.utm.paint.Point : centre
+  ca.utoronto.utm.paint.Circle o-- ca.utoronto.utm.paint.Point : centre
+  ca.utoronto.utm.paint.Paint o-- ca.utoronto.utm.paint.PaintModel : model
+  ca.utoronto.utm.paint.Paint o-- ca.utoronto.utm.paint.View : view
+  ca.utoronto.utm.paint.Paint o-- ca.utoronto.utm.paint.PaintModel : model
+  ca.utoronto.utm.paint.Paint o-- ca.utoronto.utm.paint.View : view
+  ca.utoronto.utm.paint.PaintModel -up-|> java.util.Observable
+  ca.utoronto.utm.paint.PaintModel -up-|> java.util.Observable
+  ca.utoronto.utm.paint.PaintPanel .up.|> java.awt.event.MouseListener
+  ca.utoronto.utm.paint.PaintPanel .up.|> java.awt.event.MouseMotionListener
+  ca.utoronto.utm.paint.PaintPanel .up.|> java.util.Observer
+  ca.utoronto.utm.paint.PaintPanel -up-|> javax.swing.JPanel
+  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.Circle : circle
+  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.PaintModel : model
+  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.View : view
+  ca.utoronto.utm.paint.PaintPanel .up.|> java.awt.event.MouseListener
+  ca.utoronto.utm.paint.PaintPanel .up.|> java.awt.event.MouseMotionListener
+  ca.utoronto.utm.paint.PaintPanel .up.|> java.util.Observer
+  ca.utoronto.utm.paint.PaintPanel -up-|> javax.swing.JPanel
+  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.Circle : circle
+  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.PaintModel : model
+  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.View : view
+  ca.utoronto.utm.paint.ShapeChooserPanel .up.|> java.awt.event.ActionListener
+  ca.utoronto.utm.paint.ShapeChooserPanel -up-|> javax.swing.JPanel
+  ca.utoronto.utm.paint.ShapeChooserPanel o-- ca.utoronto.utm.paint.View : view
+  ca.utoronto.utm.paint.ShapeChooserPanel .up.|> java.awt.event.ActionListener
+  ca.utoronto.utm.paint.ShapeChooserPanel -up-|> javax.swing.JPanel
+  ca.utoronto.utm.paint.ShapeChooserPanel o-- ca.utoronto.utm.paint.View : view
+  ca.utoronto.utm.paint.View .up.|> java.awt.event.ActionListener
+  ca.utoronto.utm.paint.View -up-|> javax.swing.JFrame
+  ca.utoronto.utm.paint.View o-- ca.utoronto.utm.paint.PaintModel : model
+  ca.utoronto.utm.paint.View o-- ca.utoronto.utm.paint.PaintPanel : paintPanel
+  ca.utoronto.utm.paint.View o-- ca.utoronto.utm.paint.ShapeChooserPanel : shapeChooserPanel
+  ca.utoronto.utm.paint.View .up.|> java.awt.event.ActionListener
+  ca.utoronto.utm.paint.View -up-|> javax.swing.JFrame
+  ca.utoronto.utm.paint.View o-- ca.utoronto.utm.paint.PaintModel : model
+  ca.utoronto.utm.paint.View o-- ca.utoronto.utm.paint.PaintPanel : paintPanel
+  ca.utoronto.utm.paint.View o-- ca.utoronto.utm.paint.ShapeChooserPanel : shapeChooserPanel
+  ca.utoronto.utm.scribble.ScribblePanel .up.|> java.awt.event.MouseMotionListener
+  ca.utoronto.utm.scribble.ScribblePanel -up-|> javax.swing.JPanel
+  ca.utoronto.utm.scribble.ScribblePanel .up.|> java.awt.event.MouseMotionListener
+  ca.utoronto.utm.scribble.ScribblePanel -up-|> javax.swing.JPanel
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
