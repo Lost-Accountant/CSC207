@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Squiggle implements LineComponent{
 
-    private ArrayList<Points> points;
+    private ArrayList<Point> points;
 
     public Squiggle(Point startPotint, Point endPoint){
-        this.points = new ArrayList<Points>();
+        this.points = new ArrayList<Point>();
         points.add(startPotint);
         points.add(endPoint);
     }
