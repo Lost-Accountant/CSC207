@@ -5,13 +5,12 @@ package ca.utoronto.utm.paint;
  * width and height are the same, being double the radius
  */
 public class Circle implements Shape{
-
-    private int radius;
     private Point centre;
+    private int radius;
 
     public Circle(Point centre, int radius){
-        this.radius = radius;
         this.centre = centre;
+        this.radius = radius;
     }
 
     public Point getCentre(){
@@ -30,10 +29,6 @@ public class Circle implements Shape{
         return radius;
     }
 
-    public void setCentre(Point centre){
-        this.centre = centre;
-    }
-
     public void setWidth(int width){
         this.radius = width / 2; // integer division
     }
@@ -44,5 +39,9 @@ public class Circle implements Shape{
 
     public void setRadius(int radius){
         this.radius = radius;
+    }
+
+    public void setCentre(Point centre){
+        this.centre = centre;
     }
 }
