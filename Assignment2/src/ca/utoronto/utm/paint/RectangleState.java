@@ -25,8 +25,8 @@ public class RectangleState implements State{
      * rectangle based on the distance between current position
      * and centre.
      *
-     * The height is twice the length in Y.
-     * The width is twice the length in X.
+     * The height is twice the distance in Y.
+     * The width is twice the distance in X.
      *
      * @param event
      */
@@ -39,7 +39,7 @@ public class RectangleState implements State{
         }
     }
     /**
-     * When moouse is released, stopped chaning the width and height
+     * When moouse is released, stopped changing the width and height
      * by setting the width and height one last time.
      * @param event
      */
