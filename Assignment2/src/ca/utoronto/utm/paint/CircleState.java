@@ -29,8 +29,38 @@ public class CircleState implements State{
      * @param event
      */
     public void mouseDragged(MouseEvent event){
-        Point currentPosition = new Point(event.getX(), event.getY());
-        int newRadius = circleCreated.getCentre().getDistance(currentPosition);
-        circleCreated.setRadius(newRadius);
+        if(this.circleCreated != null) {
+            Point currentPosition = new Point(event.getX(), event.getY());
+            int newRadius = circleCreated.getCentre().getDistance(currentPosition);
+            circleCreated.setRadius(newRadius);
+        }
+    }
+
+    /**
+     * When mouse released, stopped changing the radius by
+     * setting the radius one last time.
+     */
+    public void mouseReleased(MouseEvent event){
+        if(this.circleCreated != null){
+            Point currentPosition = new Point(event.getX(), event.getY());
+            int newRadius = circleCreated.getCentre().getDistance(currentPosition);
+            circleCreated.setRadius(newRadius);
+        }
+    }
+
+    public void mouseEntered(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public void mouseExited(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public void mouseClicked(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public Circle getCircleCreated(){
+        return this.circleCreated;
     }
 }

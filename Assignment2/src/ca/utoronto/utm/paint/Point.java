@@ -22,6 +22,6 @@ public class Point {
     }
 
     public int getDistance(Point p1){
-        return -1;
+        return (int) Math.hypot(Math.abs(this.getX() - p1.getX()), Math.abs(this.getY() - p1.getY()));
     }
 }
