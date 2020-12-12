@@ -51,6 +51,11 @@ public class RectangleState implements State{
             rectangleCreated.setHeight(2 * Math.abs(event.getY() - rectangleCreated.getCentre().getY()));
         }
     }
+
+    public void mouseMoved(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
     public void mouseEntered(MouseEvent event){
         System.out.println("This doesn't do anything");
     }
