@@ -21,4 +21,7 @@ public class Point {
         this.y = y;
     }
 
+    public int getDistance(Point p1){
+        return -1;
+    }
 }
