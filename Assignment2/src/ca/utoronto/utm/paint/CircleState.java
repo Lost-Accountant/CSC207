@@ -19,8 +19,10 @@ public class CircleState implements State{
      * @param event
      */
     public void mousePressed(MouseEvent event){
-        Point centre = new Point(event.getX(), event.getY());
-        circleCreated = new Circle(centre, 0);
+        if(circleCreated == null) {
+            Point centre = new Point(event.getX(), event.getY());
+            circleCreated = new Circle(centre, 0);
+        }
     }
 
     /**
@@ -62,5 +64,9 @@ public class CircleState implements State{
 
     public Circle getCircleCreated(){
         return this.circleCreated;
+    }
+
+    public void reset(){
+        this.circleCreated = null;
     }
 }

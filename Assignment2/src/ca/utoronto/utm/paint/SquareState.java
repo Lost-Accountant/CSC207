@@ -15,8 +15,10 @@ public class SquareState implements State{
      *      * and height are both zero.
      */
     public void mousePressed(MouseEvent event){
-        Point centre = new Point(event.getX(), event.getY());
-        squareCreated = new Square(centre, 0);
+        if(squareCreated == null) {
+            Point centre = new Point(event.getX(), event.getY());
+            squareCreated = new Square(centre, 0);
+        }
     }
 
     /**
@@ -68,5 +70,9 @@ public class SquareState implements State{
 
     public Square getSquareCreated(){
         return this.squareCreated;
+    }
+
+    public void reset(){
+        this.squareCreated = null;
     }
 }

@@ -10,4 +10,5 @@ public interface State {
     public void mouseReleased(MouseEvent mouseEvent);
     public void mouseEntered(MouseEvent mouseEvent);
     public void mouseExited(MouseEvent mouseEvent);
+    public void reset();
 }

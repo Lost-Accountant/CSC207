@@ -16,8 +16,10 @@ public class RectangleState implements State{
      * @param event
      */
     public void mousePressed(MouseEvent event){
-        Point centre = new Point(event.getX(), event.getY());
-        rectangleCreated = new Rectangle(centre, 0, 0);
+        if(rectangleCreated == null) {
+            Point centre = new Point(event.getX(), event.getY());
+            rectangleCreated = new Rectangle(centre, 0, 0);
+        }
     }
 
     /**
@@ -39,7 +41,7 @@ public class RectangleState implements State{
         }
     }
     /**
-     * When moouse is released, stopped changing the width and height
+     * When mouse is released, stopped changing the width and height
      * by setting the width and height one last time.
      * @param event
      */
@@ -70,6 +72,10 @@ public class RectangleState implements State{
 
     public Rectangle getRectangleCreated(){
         return this.rectangleCreated;
+    }
+
+    public void reset(){
+        this.rectangleCreated = null;
     }
 
 }
