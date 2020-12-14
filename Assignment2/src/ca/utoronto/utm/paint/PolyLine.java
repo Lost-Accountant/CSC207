@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public class PolyLine extends Squiggle{
 
-    public PolyLine(Point startPoint, Point endPoint){
-        super(startPoint, endPoint);
+    private ArrayList<LineComponent> lines;
+
+    public PolyLine(Point startPoint){
+        super(startPoint);
     }
 
     public void attachLine(LineComponent newLine){
