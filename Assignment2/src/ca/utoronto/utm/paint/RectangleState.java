@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 
 public class RectangleState implements State{
     private Rectangle rectangleCreated;
+    private boolean completed;
 
     public RectangleState(){
         this.rectangleCreated = null;
+        this.completed = false;
     }
 
     /**
@@ -51,6 +53,8 @@ public class RectangleState implements State{
             rectangleCreated.setWidth(2 * Math.abs(event.getX() - rectangleCreated.getCentre().getX()));
             // update height
             rectangleCreated.setHeight(2 * Math.abs(event.getY() - rectangleCreated.getCentre().getY()));
+
+            this.completed = true;
         }
     }
 
@@ -76,6 +80,10 @@ public class RectangleState implements State{
 
     public void reset(){
         this.rectangleCreated = null;
+        this.completed = false;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
 }

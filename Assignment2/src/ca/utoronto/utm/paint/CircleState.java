@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 
 public class CircleState implements State{
     private Circle circleCreated;
+    private boolean completed;
 
     public CircleState(){
         this.circleCreated = null;
+        this.completed = false;
     }
 
     public void mouseMoved(MouseEvent event){
@@ -47,6 +49,7 @@ public class CircleState implements State{
             Point currentPosition = new Point(event.getX(), event.getY());
             int newRadius = circleCreated.getCentre().getDistance(currentPosition);
             circleCreated.setRadius(newRadius);
+            this.completed = true;
         }
     }
 
@@ -68,5 +71,10 @@ public class CircleState implements State{
 
     public void reset(){
         this.circleCreated = null;
+        this.completed = false;
+    }
+
+    public boolean isCompleted(){
+        return this.completed;
     }
 }
