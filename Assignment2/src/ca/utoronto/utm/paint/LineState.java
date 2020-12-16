@@ -2,7 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.event.MouseEvent;
 
-public class LineState {
+public class LineState implements State{
     private Line lineCreated;
     private boolean completed;
 
