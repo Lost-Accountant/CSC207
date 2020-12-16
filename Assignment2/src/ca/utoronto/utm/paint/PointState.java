@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 
 public class PointState implements State{
     private Point pointCreated;
+    private boolean completed;
 
     public PointState(){
         this.pointCreated = null;
+        this.completed = false;
     }
 
     /**
@@ -16,6 +18,7 @@ public class PointState implements State{
     public void mouseClicked(MouseEvent event){
         if(pointCreated == null){
             pointCreated = new Point(event.getX(), event.getY());
+            this.completed = true;
         }
     }
 
@@ -44,5 +47,10 @@ public class PointState implements State{
 
     public void reset(){
         this.pointCreated = null;
+        this.completed = true;
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 }

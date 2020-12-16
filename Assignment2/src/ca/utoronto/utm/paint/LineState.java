@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 
 public class LineState {
     private Line lineCreated;
+    private boolean completed;
 
     public LineState(){
         this.lineCreated = null;
+        this.completed = false;
     }
 
     public void mouseMoved(MouseEvent mouseEvent){
@@ -52,6 +54,7 @@ public class LineState {
     public void mouseReleased(MouseEvent mouseEvent){
         if(this.lineCreated != null){
             lineCreated.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+            this.completed = true;
         }
     };
 
@@ -66,7 +69,13 @@ public class LineState {
     public Line getLineCreated(){
         return lineCreated;
     }
+
     public void reset(){
         this.lineCreated = null;
+        this.completed = true;
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 }

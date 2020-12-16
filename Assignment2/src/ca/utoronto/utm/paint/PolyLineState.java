@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 
 public class PolyLineState implements State{
     private PolyLine polyLineCreated;
+    private boolean completed;
 
     public PolyLineState(){
         this.polyLineCreated = null;
+        this.completed = false;
     }
 
     /**
@@ -29,11 +31,46 @@ public class PolyLineState implements State{
 
     /**
      * This doesn't do anything on the poly line created. But
-     * it can be
+     * it indicates the end of drawing by changing "completed"
+     * to true.
+     *
      * @param event
      */
     public void mouseExited(MouseEvent event){
-
+        this.completed = true;
     }
 
+    public void mouseMoved(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public void mouseDragged(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public void mousePressed(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public void mouseReleased(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public void mouseEntered(MouseEvent event){
+        System.out.println("This doesn't do anything");
+    }
+
+    public PolyLine getPolyLineCreated(){
+        return this.polyLineCreated;
+    }
+
+    public void reset(){
+        this.polyLineCreated = null;
+        this.completed = false;
+    }
+
+    @Override
+    public boolean isCompleted() {
+        return completed;
+    }
 }

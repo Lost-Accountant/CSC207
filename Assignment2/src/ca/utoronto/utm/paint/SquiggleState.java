@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 
 public class SquiggleState implements State{
     private Squiggle squiggleCreated;
+    private boolean completed;
 
     public SquiggleState(){
         this.squiggleCreated = null;
+        this.completed = false;
     }
 
     /**
@@ -37,6 +39,7 @@ public class SquiggleState implements State{
     public void mouseReleased(MouseEvent event){
         if(squiggleCreated != null){
             squiggleCreated.addPoint(new Point(event.getX(), event.getY()));
+            this.completed = true;
         }
     }
 
@@ -58,9 +61,15 @@ public class SquiggleState implements State{
 
     public void reset(){
         this.squiggleCreated = null;
+        this.completed = false;
     }
 
     public Squiggle getSquiggleCreated(){
         return this.squiggleCreated;
+    }
+
+    @Override
+    public boolean isCompleted() {
+        return completed;
     }
 }

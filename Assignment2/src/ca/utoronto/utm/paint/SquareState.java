@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 
 public class SquareState implements State{
     private Square squareCreated;
+    private boolean completed;
 
     public SquareState(){
         this.squareCreated = null;
+        this.completed = false;
     }
 
     /**
@@ -50,6 +52,7 @@ public class SquareState implements State{
             int maxDistance = Math.max(Math.abs(event.getX() - squareCreated.getCentre().getX()),
                     Math.abs(event.getY() - squareCreated.getCentre().getY()));
             squareCreated.setWidth(2 * maxDistance);
+            this.completed = true;
         }
     }
     public void mouseMoved(MouseEvent event){
@@ -74,5 +77,10 @@ public class SquareState implements State{
 
     public void reset(){
         this.squareCreated = null;
+        this.completed = false;
+    }
+
+    public boolean isCompleted(){
+        return this.completed;
     }
 }
