@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PolyLine {
 
     private Point lastPoint;
-    private ArrayList<LineComponent> lines;
+    private ArrayList<Line> lines;
 
     public PolyLine(Point startPoint){
         this.lastPoint = startPoint;
@@ -36,7 +36,7 @@ public class PolyLine {
        lines.remove(lines.size() - 1);
     }
 
-    public ArrayList<LineComponent> getLines() {
+    public ArrayList<Line> getLines() {
         return lines;
     }
 }
