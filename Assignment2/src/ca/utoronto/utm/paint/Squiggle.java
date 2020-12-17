@@ -31,6 +31,10 @@ public class Squiggle implements LineComponent{
         points.add(newPoint);
     }
 
+    public ArrayList<Point> getPoints() {
+        return points;
+    }
+
     public void removeLastPoint(){
         points.remove(points.size() - 1);
     }

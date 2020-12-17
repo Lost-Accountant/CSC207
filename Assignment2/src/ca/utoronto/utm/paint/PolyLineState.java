@@ -25,7 +25,7 @@ public class PolyLineState implements State{
        if (polyLineCreated == null){
            polyLineCreated = new PolyLine(new Point(event.getX(), event.getY()));
        } else {
-           polyLineCreated.attachLine(new Point(event.getX(), event.getY()));
+           polyLineCreated.addPoint(new Point(event.getX(), event.getY()));
        }
     }
 
