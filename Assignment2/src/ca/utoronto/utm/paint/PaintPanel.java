@@ -120,7 +120,9 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	}
 	
 	/**
-	 *  Controller aspect of this
+	 *  Controller aspect of this.
+	 *
+	 *  Old code. can be deleted once everything done.
 	 */
 	public void setMode(String mode){
 		this.mode=mode;
@@ -142,6 +144,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				break;
 			case "Square":
 				currentState = new SquareState();
+				System.out.println("Square state selected.");
 				break;
 			case "Point":
 				currentState = new PointState();
@@ -160,11 +163,20 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	// MouseMotionListener below
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
+		// revoke previous command to set up new command later
+		if (this.commandCreated != null && this.commandCreated.isReversable()){
+			this.commandCreated.unexecute();
 		}
+
+		// do action based on current state
+		currentState.mouseMoved(MouseEvent e);
+
+		// check whether work is done
+
+		// if work done. reset state's work and status.
+
+		// construct and send command even if not done.
+		// Because needs live update.
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {

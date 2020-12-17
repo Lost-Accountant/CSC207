@@ -28,7 +28,8 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.view.getPaintPanel().setMode(e.getActionCommand());
+		this.view.getPaintPanel().setMode(e.getActionCommand()); // old code. can be deleted once everything done.
+		this.view.getPaintPanel().setCurrentState(e.getActionCommand());
 		System.out.println(e.getActionCommand());
 	}
 
