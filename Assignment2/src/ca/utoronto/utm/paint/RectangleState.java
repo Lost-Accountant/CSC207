@@ -2,7 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.event.MouseEvent;
 
-public class RectangleState implements State{
+public class RectangleState implements ShapeState{
     private Rectangle rectangleCreated;
     private boolean completed;
 
@@ -74,7 +74,7 @@ public class RectangleState implements State{
         System.out.println("This doesn't do anything");
     }
 
-    public Rectangle getRectangleCreated(){
+    public Rectangle getShapeCreated(){
         return this.rectangleCreated;
     }
 

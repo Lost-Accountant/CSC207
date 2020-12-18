@@ -2,7 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.event.MouseEvent;
 
-public class SquiggleState implements State{
+public class SquiggleState implements LineComponentState{
     private Squiggle squiggleCreated;
     private boolean completed;
 
@@ -64,7 +64,7 @@ public class SquiggleState implements State{
         this.completed = false;
     }
 
-    public Squiggle getSquiggleCreated(){
+    public Squiggle getLineComponentCreated(){
         return this.squiggleCreated;
     }
 

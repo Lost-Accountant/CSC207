@@ -2,7 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.event.MouseEvent;
 
-public class PolyLineState implements State{
+public class PolyLineState implements LineComponentState{
     private PolyLine polyLineCreated;
     private boolean completed;
 
@@ -60,7 +60,7 @@ public class PolyLineState implements State{
         System.out.println("This doesn't do anything");
     }
 
-    public PolyLine getPolyLineCreated(){
+    public PolyLine getLineComponentCreated(){
         return this.polyLineCreated;
     }
 

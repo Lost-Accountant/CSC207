@@ -2,7 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.event.MouseEvent;
 
-public class CircleState implements State{
+public class CircleState implements ShapeState{
     private Circle circleCreated;
     private boolean completed;
 
@@ -12,7 +12,6 @@ public class CircleState implements State{
     }
 
     public void mouseMoved(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     /**
@@ -54,18 +53,18 @@ public class CircleState implements State{
     }
 
     public void mouseEntered(MouseEvent event){
-        System.out.println("This doesn't do anything");
+
     }
 
     public void mouseExited(MouseEvent event){
-        System.out.println("This doesn't do anything");
+
     }
 
     public void mouseClicked(MouseEvent event){
-        System.out.println("This doesn't do anything");
+
     }
 
-    public Circle getCircleCreated(){
+    public Circle getShapeCreated(){
         return this.circleCreated;
     }
 

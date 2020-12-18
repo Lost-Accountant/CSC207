@@ -2,7 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.event.MouseEvent;
 
-public class SquareState implements State{
+public class SquareState implements ShapeState{
     private Square squareCreated;
     private boolean completed;
 
@@ -71,7 +71,7 @@ public class SquareState implements State{
         System.out.println("This doesn't do anything");
     }
 
-    public Square getSquareCreated(){
+    public Square getShapeCreated(){
         return this.squareCreated;
     }
 

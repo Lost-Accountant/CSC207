@@ -2,7 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.event.MouseEvent;
 
-public class LineState implements State{
+public class LineState implements LineComponentState{
     private Line lineCreated;
     private boolean completed;
 
@@ -66,7 +66,7 @@ public class LineState implements State{
         System.out.println("This doesn't do anything");
     }
 
-    public Line getLineCreated(){
+    public Line getLineComponentCreated(){
         return lineCreated;
     }
 

@@ -37,7 +37,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		
 		this.view = view;
 
-		this.currentState = null;
+		this.currentState = new CircleState();
 		this.commandCreated = null;
 	}
 
@@ -160,86 +160,178 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		}
 	}
 
+	public void addCommand(){
+		if (currentState instanceof ShapeState){
+			commandCreated = new AddShapeCommand(model, ((ShapeState) currentState).getShapeCreated());
+		} else if (currentState instanceof PointState){
+			commandCreated = new AddPointCommand(model, ((PointState) currentState).getPointCreated());
+		} else if (currentState instanceof LineComponentState){
+			commandCreated = new AddLineCommand(model, ((LineComponentState) currentState).getLineComponentCreated());
+		}
+	}
+
 	// MouseMotionListener below
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// revoke previous command to set up new command later
-		if (this.commandCreated != null && this.commandCreated.isReversable()){
-			this.commandCreated.unexecute();
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			currentState.reset();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
+			}
 		}
-
 		// do action based on current state
-		currentState.mouseMoved(MouseEvent e);
-
-		// check whether work is done
-
-		// if work done. reset state's work and status.
+		currentState.mouseMoved(e);
 
 		// construct and send command even if not done.
 		// Because needs live update.
+		this.addCommand();
 	}
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			this.model.addPoint(new Point(e.getX(), e.getY()));
-		} else if(this.mode=="Circle"){
-			
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			System.out.println("it is completed"); // this doesn't show up.
+			// reset the state to construct new creation.
+			currentState.reset();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				//this.model.revokeCommand();
+				System.out.println("it is revoking");
+			}
 		}
+		// do action based on current state
+		currentState.mouseDragged(e);
+
+		// construct and send command even if not done.
+		// Because needs live update.
+		this.addCommand();
 	}
 
 	// MouseListener below
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			currentState.reset();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
+			}
 		}
+		// do action based on current state
+		currentState.mouseClicked(e);
+
+		// construct and send command even if not done.
+		// Because needs live update.
+		this.addCommand();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			// Problematic notion of radius and centre!!
-			Point centre = new Point(e.getX(), e.getY());
-			int radius = 0;
-			this.circle=new Circle(centre, 0);
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			currentState.reset();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
+			}
 		}
+		// do action based on current state
+		currentState.mousePressed(e);
+
+		// construct and send command even if not done.
+		// Because needs live update.
+		this.addCommand();
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			if(this.circle!=null){
-				// Problematic notion of radius and centre!!
-				int radius = Math.abs(this.circle.getCentre().getX()-e.getX());
-				this.circle.setRadius(radius);
-				this.model.addShape(this.circle);
-				this.circle=null;
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			currentState.reset();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
 			}
 		}
-		
+		// do action based on current state
+		currentState.mouseReleased(e);
+
+		// construct and send command even if not done.
+		// Because needs live update.
+		this.addCommand();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			currentState.reset();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
+			}
 		}
+		// do action based on current state
+		currentState.mouseEntered(e);
+
+		// construct and send command even if not done.
+		// Because needs live update.
+		this.addCommand();
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			currentState.reset();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
+			}
 		}
+		// do action based on current state
+		currentState.mouseExited(e);
+
+		// construct and send command even if not done.
+		// Because needs live update.
+		this.addCommand();
 	}
 }

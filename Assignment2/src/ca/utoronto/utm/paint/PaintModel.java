@@ -69,14 +69,13 @@ public class PaintModel extends Observable {
 	}
 
 	/**
-	 * Invoke all commands stored but not executed yet.
-	 * Downsize command list at the end to reduce memory usage.
+	 * Execute the command received and then add to the list
+	 * of executed commands. Clear command backlog at the end.
 	 */
-	public void invokeCommand(){
-		while (commandLog < commands.size()){
-			commands.get(commandLog).execute();
-			commandLog += 1;
-		}
+	public void invokeCommand(Command command){
+		command.execute();
+		this.commands.add(command);
+		commandLog += 1;
 		// downsize
 		this.downsizeCommands();
 	}
@@ -85,8 +84,9 @@ public class PaintModel extends Observable {
 	 * Revoke the last command. (When undo is pressed)
 	 */
 	public void revokeCommand(){
-		if (commands.get(commands.size() - 1).isReversable()) {
+		if ( !commands.isEmpty() && commands.get(commands.size() - 1).isReversable()) {
 			commands.get(commands.size() - 1).unexecute();
+			commands.remove(commands.size() - 1);
 			commandLog -= 1;
 		}
 	}
