@@ -15,9 +15,6 @@ public class PaintModel extends Observable {
 
 	private ArrayList<Command> commands = new ArrayList<Command>();
 	private int commandLog = 0; // allow redo feature of up to 5 commands.
-
-	// temporary old code
-	private ArrayList<Circle> circles = new ArrayList<Circle>();
 	
 	
 	public void addPoint(Point p){
@@ -103,24 +100,6 @@ public class PaintModel extends Observable {
 				commandLog -= 1;
 			}
 		}
-	}
-
-	/**
-	 * WIP as add shapes disrupts old code
-	 * @param c
-	 */
-	public void addCircle(Circle c){
-		this.circles.add(c);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	/**
-	 * WIP as get shapes disruptes old code
-	 * @return
-	 */
-	public ArrayList<Circle> getCircles(){
-		return circles;
 	}
 
 

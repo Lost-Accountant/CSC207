@@ -20,17 +20,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private View view; // So we can talk to our parent or other components of the view
 	private State currentState; // Set different behavior based on states.
 	private Command commandCreated; // create command to sent to Paint Model.
-
-	private String mode; // modifies how we interpret input (could be better?)
-	private Circle circle; // the circle we are building
 	
 	public PaintPanel(PaintModel model, View view){
 		this.setBackground(Color.blue);
 		this.setPreferredSize(new Dimension(300,300));
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
-		
-		this.mode="Circle"; // bad code here?
 		
 		this.model = model;
 		this.model.addObserver(this);
@@ -117,15 +112,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	public void update(Observable o, Object arg) {
 		// Not exactly how MVC works, but similar.
 		this.repaint(); // Schedule a call to paintComponent
-	}
-	
-	/**
-	 *  Controller aspect of this.
-	 *
-	 *  Old code. can be deleted once everything done.
-	 */
-	public void setMode(String mode){
-		this.mode=mode;
 	}
 
 	/**
