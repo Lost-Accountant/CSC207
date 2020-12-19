@@ -1,5 +1,7 @@
 package ca.utoronto.utm.paint;
 
+import java.util.ArrayList;
+
 public class Line implements LineComponent {
 
     private Point startPoint;
@@ -24,5 +26,12 @@ public class Line implements LineComponent {
 
     public void setEndPoint(Point point){
         this.endPoint = point;
+    }
+
+    public ArrayList<Point> getPoints() {
+        ArrayList<Point> points = new ArrayList<Point>();
+        points.add(this.getStartPoint());
+        points.add(this.getEndPoint());
+        return points;
     }
 }
