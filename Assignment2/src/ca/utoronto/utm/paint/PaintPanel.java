@@ -160,7 +160,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		}
 	}
 
-	public void addCommand(){
+	public Command constructCommand(){
 		if (currentState instanceof ShapeState){
 			commandCreated = new AddShapeCommand(model, ((ShapeState) currentState).getShapeCreated());
 		} else if (currentState instanceof PointState){
@@ -168,6 +168,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		} else if (currentState instanceof LineComponentState){
 			commandCreated = new AddLineCommand(model, ((LineComponentState) currentState).getLineComponentCreated());
 		}
+		return commandCreated;
 	}
 
 	// MouseMotionListener below
@@ -191,7 +192,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 		// construct and send command even if not done.
 		// Because needs live update.
-		this.addCommand();
+		this.model.invokeCommand(this.constructCommand());
 	}
 
 	@Override
@@ -216,7 +217,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 		// construct and send command even if not done.
 		// Because needs live update.
-		this.addCommand();
+		this.model.invokeCommand(this.constructCommand());
 	}
 
 	// MouseListener below
@@ -240,7 +241,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 		// construct and send command even if not done.
 		// Because needs live update.
-		this.addCommand();
+		this.model.invokeCommand(this.constructCommand());
 	}
 
 	@Override
@@ -263,7 +264,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 		// construct and send command even if not done.
 		// Because needs live update.
-		this.addCommand();
+		this.model.invokeCommand(this.constructCommand());
 	}
 
 	@Override
@@ -286,7 +287,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 		// construct and send command even if not done.
 		// Because needs live update.
-		this.addCommand();
+		this.model.invokeCommand(this.constructCommand());
 	}
 
 	@Override
@@ -309,7 +310,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 		// construct and send command even if not done.
 		// Because needs live update.
-		this.addCommand();
+		this.model.invokeCommand(this.constructCommand());
 	}
 
 	@Override
@@ -332,6 +333,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 		// construct and send command even if not done.
 		// Because needs live update.
-		this.addCommand();
+		this.model.invokeCommand(this.constructCommand());
 	}
 }
