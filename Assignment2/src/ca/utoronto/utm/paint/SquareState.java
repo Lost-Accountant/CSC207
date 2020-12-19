@@ -55,21 +55,13 @@ public class SquareState implements ShapeState{
             this.completed = true;
         }
     }
-    public void mouseMoved(MouseEvent event){
-        System.out.println("This doesn't do anything");
-    }
+    public void mouseMoved(MouseEvent event){}
 
-    public void mouseEntered(MouseEvent event){
-        System.out.println("This doesn't do anything");
-    }
+    public void mouseEntered(MouseEvent event){}
 
-    public void mouseExited(MouseEvent event){
-        System.out.println("This doesn't do anything");
-    }
+    public void mouseExited(MouseEvent event){}
 
-    public void mouseClicked(MouseEvent event){
-        System.out.println("This doesn't do anything");
-    }
+    public void mouseClicked(MouseEvent event){}
 
     public Square getShapeCreated(){
         return this.squareCreated;

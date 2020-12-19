@@ -11,8 +11,7 @@ public class CircleState implements ShapeState{
         this.completed = false;
     }
 
-    public void mouseMoved(MouseEvent event){
-    }
+    public void mouseMoved(MouseEvent event){}
 
     /**
      * When mouse pressed, create a circle centered at where mouse pressed.
@@ -52,17 +51,11 @@ public class CircleState implements ShapeState{
         }
     }
 
-    public void mouseEntered(MouseEvent event){
+    public void mouseEntered(MouseEvent event){}
 
-    }
+    public void mouseExited(MouseEvent event){}
 
-    public void mouseExited(MouseEvent event){
-
-    }
-
-    public void mouseClicked(MouseEvent event){
-
-    }
+    public void mouseClicked(MouseEvent event){}
 
     public Circle getShapeCreated(){
         return this.circleCreated;

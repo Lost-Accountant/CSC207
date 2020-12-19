@@ -87,10 +87,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			Point centre = s.getCentre();
 			// if shape is circle
 			if (s instanceof Circle){
-				g2d.drawOval(centre.getX(), centre.getY(), s.getWidth(), s.getHeight());
+				g2d.drawOval(centre.getX()-s.getWidth()/2, centre.getY()-s.getHeight()/2,
+						s.getWidth(), s.getHeight());
 			} // same way to draw rectangle and square
 			else if (s instanceof Rectangle){
-				g2d.drawRect(centre.getX(), centre.getY(), s.getWidth(), s.getHeight());
+				g2d.drawRect(centre.getX()-s.getWidth()/2, centre.getY()-s.getHeight()/2,
+						s.getWidth(), s.getHeight());
 			}
 		}
 	}
