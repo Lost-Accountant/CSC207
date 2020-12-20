@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
@@ -30,6 +31,8 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		this.view.getPaintPanel().setCurrentState(e.getActionCommand());
 		System.out.println(e.getActionCommand());
+
+		// need to figure out how to get a button to change color
 	}
 
 	

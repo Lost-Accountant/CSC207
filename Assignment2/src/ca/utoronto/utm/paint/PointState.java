@@ -18,6 +18,9 @@ public class PointState implements State{
     public void mouseClicked(MouseEvent event){
         if(pointCreated == null){
             pointCreated = new Point(event.getX(), event.getY());
+
+            // currently can't make more than 1 point.
+
             this.completed = true;
         }
     }

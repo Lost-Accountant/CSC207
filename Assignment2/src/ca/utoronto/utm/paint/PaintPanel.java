@@ -166,7 +166,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
 			// reset the state to construct new creation.
-			currentState.reset();
+			this.resetAfterCompletion();
 		} // Situation B: the previous mouse movement did not make a completed creation
 		else {
 			// revoke previous command to set up new command later
@@ -188,16 +188,14 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
-			System.out.println("it is completed"); // this doesn't show up.
 			// reset the state to construct new creation.
-			currentState.reset();
+			this.resetAfterCompletion();
 		} // Situation B: the previous mouse movement did not make a completed creation
 		else {
 			// revoke previous command to set up new command later
 			// unless the previous command is for a finished product.
 			if (this.commandCreated != null) {
-				//this.model.revokeCommand();
-				System.out.println("it is revoking");
+				this.model.revokeCommand();
 			}
 		}
 		// do action based on current state
@@ -215,7 +213,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
 			// reset the state to construct new creation.
-			currentState.reset();
+			this.resetAfterCompletion();
 		} // Situation B: the previous mouse movement did not make a completed creation
 		else {
 			// revoke previous command to set up new command later
@@ -238,7 +236,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
 			// reset the state to construct new creation.
-			currentState.reset();
+			this.resetAfterCompletion();
 		} // Situation B: the previous mouse movement did not make a completed creation
 		else {
 			// revoke previous command to set up new command later
@@ -261,7 +259,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
 			// reset the state to construct new creation.
-			currentState.reset();
+			this.resetAfterCompletion();
 		} // Situation B: the previous mouse movement did not make a completed creation
 		else {
 			// revoke previous command to set up new command later
@@ -284,7 +282,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
 			// reset the state to construct new creation.
-			currentState.reset();
+			this.resetAfterCompletion();
 		} // Situation B: the previous mouse movement did not make a completed creation
 		else {
 			// revoke previous command to set up new command later
@@ -307,7 +305,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
 			// reset the state to construct new creation.
-			currentState.reset();
+			this.resetAfterCompletion();
 		} // Situation B: the previous mouse movement did not make a completed creation
 		else {
 			// revoke previous command to set up new command later
@@ -322,5 +320,13 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// construct and send command even if not done.
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
+	}
+
+	/**
+	 * Activated each time a creation is completed.
+	 */
+	public void resetAfterCompletion(){
+		this.currentState.reset();
+		this.commandCreated = null;
 	}
 }
