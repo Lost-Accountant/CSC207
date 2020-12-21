@@ -132,7 +132,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				break;
 			case "Square":
 				currentState = new SquareState();
-				System.out.println("Square state selected.");
 				break;
 			case "Point":
 				currentState = new PointState();
@@ -146,6 +145,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				currentState = new PolyLineState();
 				break;
 		}
+		System.out.println(mode + "selected");
 	}
 
 	public Command constructCommand(){

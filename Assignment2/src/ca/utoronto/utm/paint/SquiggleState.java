@@ -19,6 +19,7 @@ public class SquiggleState implements LineComponentState{
         if(squiggleCreated == null){
             squiggleCreated = new Squiggle(new Point(event.getX(), event.getY()));
         }
+        System.out.println("Pressing!");
     }
 
     /**
@@ -30,6 +31,7 @@ public class SquiggleState implements LineComponentState{
         if(squiggleCreated != null){
             squiggleCreated.addPoint(new Point(event.getX(), event.getY()));
         }
+        System.out.println("Dragging!");
     }
 
     /**
@@ -38,7 +40,7 @@ public class SquiggleState implements LineComponentState{
      */
     public void mouseReleased(MouseEvent event){
         if(squiggleCreated != null){
-            squiggleCreated.addPoint(new Point(event.getX(), event.getY()));
+            squiggleCreated.setEndPoint(new Point(event.getX(), event.getY()));
             this.completed = true;
         }
     }

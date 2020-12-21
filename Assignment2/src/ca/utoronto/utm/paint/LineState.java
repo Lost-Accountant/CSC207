@@ -72,7 +72,7 @@ public class LineState implements LineComponentState{
 
     public void reset(){
         this.lineCreated = null;
-        this.completed = true;
+        this.completed = false;
     }
 
     public boolean isCompleted() {
