@@ -74,4 +74,8 @@ public class SquiggleState implements LineComponentState{
     public boolean isCompleted() {
         return completed;
     }
+
+    public Squiggle getCreation(){
+        return getLineComponentCreated();
+    }
 }

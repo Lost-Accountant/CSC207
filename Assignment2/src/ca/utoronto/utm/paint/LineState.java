@@ -78,4 +78,8 @@ public class LineState implements LineComponentState{
     public boolean isCompleted() {
         return completed;
     }
+
+    public Line getCreation(){
+        return getLineComponentCreated();
+    }
 }

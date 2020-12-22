@@ -78,4 +78,8 @@ public class RectangleState implements ShapeState{
     public boolean isCompleted() {
         return completed;
     }
+
+    public Rectangle getCreation(){
+        return getShapeCreated();
+    }
 }

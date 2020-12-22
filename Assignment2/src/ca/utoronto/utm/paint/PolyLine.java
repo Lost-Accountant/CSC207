@@ -36,6 +36,13 @@ public class PolyLine implements LineComponent{
     }
 
     public ArrayList<Point> getPoints() {
-        return points;
+        if (points.size() > 1) {
+            return points;
+        } else{
+            ArrayList<Point> initialPoints = new ArrayList<Point>();
+            initialPoints.add(this.getStartPoint());
+            initialPoints.add(this.getEndPoint());
+            return initialPoints;
+        }
     }
 }

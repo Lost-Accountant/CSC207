@@ -47,4 +47,8 @@ public class PointState implements State{
     public boolean isCompleted() {
         return completed;
     }
+
+    public Point getCreation(){
+        return getPointCreated();
+    }
 }

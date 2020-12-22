@@ -69,11 +69,13 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	 */
 	public void paintAllPoints(Graphics2D g2d){
 		ArrayList<Point> existingPoints = this.model.getPoints();
-		for(Point p: existingPoints){
-			int x = p.getX();
-			int y = p.getY();
-			// draw points by drawing tiny circles
-			g2d.drawOval(x, y, 1, 1);
+		if(!existingPoints.isEmpty()) {
+			for (Point p : existingPoints) {
+				int x = p.getX();
+				int y = p.getY();
+				// draw points by drawing tiny circles
+				g2d.drawOval(x, y, 1, 1);
+			}
 		}
 	}
 
@@ -83,29 +85,33 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	 */
 	public void paintAllShapes(Graphics2D g2d){
 		ArrayList<Shape> existingShapes = this.model.getShapes();
-		for(Shape s: existingShapes){
-			Point centre = s.getCentre();
-			// if shape is circle
-			if (s instanceof Circle){
-				g2d.drawOval(centre.getX()-s.getWidth()/2, centre.getY()-s.getHeight()/2,
-						s.getWidth(), s.getHeight());
-			} // same way to draw rectangle and square
-			else if (s instanceof Rectangle){
-				g2d.drawRect(centre.getX()-s.getWidth()/2, centre.getY()-s.getHeight()/2,
-						s.getWidth(), s.getHeight());
+		if(!existingShapes.isEmpty()) {
+			for (Shape s : existingShapes) {
+				Point centre = s.getCentre();
+				// if shape is circle
+				if (s instanceof Circle) {
+					g2d.drawOval(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
+							s.getWidth(), s.getHeight());
+				} // same way to draw rectangle and square
+				else if (s instanceof Rectangle) {
+					g2d.drawRect(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
+							s.getWidth(), s.getHeight());
+				}
 			}
 		}
 	}
 
 	public void paintAllLines(Graphics2D g2d){
 		ArrayList<LineComponent> existingLines = this.model.getLines();
-		for (LineComponent l: existingLines){
-			// for each LineComponent, connect all points within each.
-			ArrayList<Point> points = l.getPoints();
-			for (int i = 0; i < points.size() - 1; i++){
-				Point p1 = points.get(i);
-				Point p2 = points.get(i + 1);
-				g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		if (!existingLines.isEmpty()) {
+			for (LineComponent l : existingLines) {
+				// for each LineComponent, connect all points within each.
+				ArrayList<Point> points = l.getPoints();
+				for (int i = 0; i < points.size() - 1; i++) {
+					Point p1 = points.get(i);
+					Point p2 = points.get(i + 1);
+					g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+				}
 			}
 		}
 	}
@@ -149,14 +155,18 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	}
 
 	public Command constructCommand(){
-		if (currentState instanceof ShapeState){
-			commandCreated = new AddShapeCommand(model, ((ShapeState) currentState).getShapeCreated());
-		} else if (currentState instanceof PointState){
-			commandCreated = new AddPointCommand(model, ((PointState) currentState).getPointCreated());
-		} else if (currentState instanceof LineComponentState){
-			commandCreated = new AddLineCommand(model, ((LineComponentState) currentState).getLineComponentCreated());
+		if (currentState.getCreation() != null) {
+			if (currentState instanceof ShapeState) {
+				commandCreated = new AddShapeCommand(model, ((ShapeState) currentState).getShapeCreated());
+			} else if (currentState instanceof PointState) {
+				commandCreated = new AddPointCommand(model, ((PointState) currentState).getPointCreated());
+			} else if (currentState instanceof LineComponentState) {
+				commandCreated = new AddLineCommand(model, ((LineComponentState) currentState).getLineComponentCreated());
+			}
+			return commandCreated;
+		} else {
+			return null;
 		}
-		return commandCreated;
 	}
 
 	// MouseMotionListener below
@@ -328,5 +338,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	public void resetAfterCompletion(){
 		this.currentState.reset();
 		this.commandCreated = null;
+		System.out.println("Status reset.");
 	}
 }

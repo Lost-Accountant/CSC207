@@ -12,4 +12,5 @@ public interface State {
     public void mouseExited(MouseEvent mouseEvent);
     public void reset();
     public boolean isCompleted();
+    public Object getCreation();
 }
