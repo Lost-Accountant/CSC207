@@ -12,7 +12,6 @@ public class LineState implements LineComponentState{
     }
 
     public void mouseMoved(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     /**
@@ -27,7 +26,6 @@ public class LineState implements LineComponentState{
     };
 
     public void mouseClicked(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     /**
@@ -59,11 +57,9 @@ public class LineState implements LineComponentState{
     };
 
     public void mouseEntered(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseExited(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     public Line getLineComponentCreated(){

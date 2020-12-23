@@ -144,6 +144,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				break;
 			case "Squiggle":
 				currentState = new SquiggleState();
+				break;
 			case "Line":
 				currentState = new LineState();
 				break;

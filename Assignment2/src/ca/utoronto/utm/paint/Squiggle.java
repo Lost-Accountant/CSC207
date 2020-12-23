@@ -8,7 +8,7 @@ public class Squiggle implements LineComponent{
 
     public Squiggle(Point startPoint){
         this.points = new ArrayList<Point>();
-        this.setStartPoint(startPoint);
+        this.points.add(startPoint);
     }
 
     public Point getStartPoint(){
