@@ -41,22 +41,18 @@ public class PolyLineState implements LineComponentState{
     }
 
     public void mouseMoved(MouseEvent event){
-        polyLineCreated.addPoint(new Point(event.getX(),event.getY()));
     }
 
     public void mouseDragged(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public void mousePressed(MouseEvent event){
     }
 
     public void mouseReleased(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseEntered(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public PolyLine getLineComponentCreated(){

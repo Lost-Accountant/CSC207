@@ -8,7 +8,7 @@ public class PolyLine implements LineComponent{
 
     public PolyLine(Point startPoint){
         this.points = new ArrayList<Point>();
-        this.setStartPoint(startPoint);
+        this.points.add(startPoint);
     }
 
     public Point getStartPoint(){
