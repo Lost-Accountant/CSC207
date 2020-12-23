@@ -75,4 +75,9 @@ public class SquareState implements ShapeState{
     public boolean isCompleted(){
         return this.completed;
     }
+
+    @Override
+    public Object getCreation() {
+        return getShapeCreated();
+    }
 }

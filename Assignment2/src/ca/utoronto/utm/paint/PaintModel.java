@@ -70,11 +70,13 @@ public class PaintModel extends Observable {
 	 * of executed commands. Clear command backlog at the end.
 	 */
 	public void invokeCommand(Command command){
-		command.execute();
-		this.commands.add(command);
-		commandLog += 1;
-		// downsize
-		this.downsizeCommands();
+		if (command != null) {
+			command.execute();
+			this.commands.add(command);
+			commandLog += 1;
+			// downsize
+			this.downsizeCommands();
+		}
 	}
 
 	/**
@@ -84,7 +86,9 @@ public class PaintModel extends Observable {
 		if ( !commands.isEmpty() && commands.get(commands.size() - 1).isReversable()) {
 			commands.get(commands.size() - 1).unexecute();
 			commands.remove(commands.size() - 1);
-			commandLog -= 1;
+			if (commandLog > 0) {
+				commandLog -= 1;
+			}
 		}
 	}
 

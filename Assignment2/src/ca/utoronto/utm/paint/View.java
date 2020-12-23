@@ -40,7 +40,7 @@ public class View extends JFrame implements ActionListener {
 		c.add(this.paintPanel, BorderLayout.CENTER);
 		
 		this.pack();
-		// this.setSize(200,200);
+		this.setSize(800,800);
 		this.setVisible(true);
 	}
 

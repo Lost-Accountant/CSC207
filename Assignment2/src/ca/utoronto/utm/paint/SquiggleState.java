@@ -38,25 +38,21 @@ public class SquiggleState implements LineComponentState{
      */
     public void mouseReleased(MouseEvent event){
         if(squiggleCreated != null){
-            squiggleCreated.addPoint(new Point(event.getX(), event.getY()));
+            squiggleCreated.setEndPoint(new Point(event.getX(), event.getY()));
             this.completed = true;
         }
     }
 
     public void mouseMoved(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseEntered(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseExited(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseClicked(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public void reset(){
@@ -68,8 +64,11 @@ public class SquiggleState implements LineComponentState{
         return this.squiggleCreated;
     }
 
-    @Override
     public boolean isCompleted() {
         return completed;
+    }
+
+    public Squiggle getCreation(){
+        return getLineComponentCreated();
     }
 }

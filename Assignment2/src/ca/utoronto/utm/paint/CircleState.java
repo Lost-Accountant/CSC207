@@ -69,4 +69,8 @@ public class CircleState implements ShapeState{
     public boolean isCompleted(){
         return this.completed;
     }
+
+    public Circle getCreation(){
+        return getShapeCreated();
+    }
 }

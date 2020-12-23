@@ -15,30 +15,24 @@ public class PointState implements State{
      * Create the point where mouse clicked
      * @param event
      */
-    public void mouseClicked(MouseEvent event){
-        if(pointCreated == null){
-            pointCreated = new Point(event.getX(), event.getY());
-            this.completed = true;
-        }
-    }
-
+    public void mouseClicked(MouseEvent event){}
     public void mouseMoved(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
     public void mouseDragged(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
-    public void mousePressed(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
+
+    public void mousePressed(MouseEvent event){
+        if(pointCreated == null) {
+            pointCreated = new Point(event.getX(), event.getY());
+        }
     }
-    public void mouseReleased(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
+    public void mouseReleased(MouseEvent event){
+        this.completed = true;
     }
+
     public void mouseEntered(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
     public void mouseExited(MouseEvent mouseEvent){
-        System.out.println("This doesn't do anything");
     }
 
     public Point getPointCreated(){
@@ -47,10 +41,14 @@ public class PointState implements State{
 
     public void reset(){
         this.pointCreated = null;
-        this.completed = true;
+        this.completed = false;
     }
 
     public boolean isCompleted() {
         return completed;
+    }
+
+    public Point getCreation(){
+        return getPointCreated();
     }
 }

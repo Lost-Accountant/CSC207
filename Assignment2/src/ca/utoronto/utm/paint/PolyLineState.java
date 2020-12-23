@@ -22,11 +22,11 @@ public class PolyLineState implements LineComponentState{
      * @param event
      */
     public void mouseClicked(MouseEvent event){
-       if (polyLineCreated == null){
-           polyLineCreated = new PolyLine(new Point(event.getX(), event.getY()));
-       } else {
-           polyLineCreated.addPoint(new Point(event.getX(), event.getY()));
-       }
+        if (polyLineCreated == null){
+            polyLineCreated = new PolyLine(new Point(event.getX(), event.getY()));
+        } else {
+            polyLineCreated.addPoint(new Point(event.getX(), event.getY()));
+        }
     }
 
     /**
@@ -41,23 +41,18 @@ public class PolyLineState implements LineComponentState{
     }
 
     public void mouseMoved(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseDragged(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public void mousePressed(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseReleased(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public void mouseEntered(MouseEvent event){
-        System.out.println("This doesn't do anything");
     }
 
     public PolyLine getLineComponentCreated(){
@@ -72,5 +67,9 @@ public class PolyLineState implements LineComponentState{
     @Override
     public boolean isCompleted() {
         return completed;
+    }
+
+    public PolyLine getCreation(){
+        return getLineComponentCreated();
     }
 }
