@@ -1,15 +1,17 @@
 package ca.utoronto.utm.paint;
 
 public interface Shape {
+
+
     public Point getCentre();
 
-    public int getWidth();
+    public abstract int getWidth();
 
-    public int getHeight();
+    public abstract int getHeight();
 
-    public void setCentre(Point center);
+    public void setCentre(Point centre);
 
-    public void setWidth(int width);
+    public abstract void setWidth(int width);
 
-    public void setHeight(int height);
+    public abstract void setHeight(int height);
 }
