@@ -2,6 +2,10 @@ package ca.utoronto.utm.paint;
 
 public class Point {
     private int x, y;
+    private String color;
+    private int stroke;
+
+
     Point(int x, int y){
         this.x=x; this.y=y;
     }
