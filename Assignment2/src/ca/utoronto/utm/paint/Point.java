@@ -6,8 +6,10 @@ public class Point {
     private int stroke;
 
 
-    Point(int x, int y){
+    Point(int x, int y, String color, int stroke){
         this.x=x; this.y=y;
+        this.color = color;
+        this.stroke = stroke;
     }
     public int getX() {
         return x;
