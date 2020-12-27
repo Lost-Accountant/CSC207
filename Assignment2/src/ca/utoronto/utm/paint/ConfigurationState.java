@@ -2,13 +2,13 @@ package ca.utoronto.utm.paint;
 
 public class ConfigurationState {
     private String color;
-    private int stroke;
+    private int lineThickness;
     private boolean isFilled;
 
     public ConfigurationState(){
         // default setting
         this.color = "black";
-        this.stroke = 1;
+        this.lineThickness = 1;
         this.isFilled = false;
     }
 
@@ -16,8 +16,8 @@ public class ConfigurationState {
         return isFilled;
     }
 
-    public int getStroke() {
-        return stroke;
+    public int getLineThickness() {
+        return lineThickness;
     }
 
     public String getColor() {
@@ -32,7 +32,7 @@ public class ConfigurationState {
         isFilled = filled;
     }
 
-    public void setStroke(int stroke) {
-        this.stroke = stroke;
+    public void setLineThickness(int lineThickness) {
+        this.lineThickness = lineThickness;
     }
 }
