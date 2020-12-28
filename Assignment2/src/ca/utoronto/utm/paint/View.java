@@ -2,8 +2,7 @@ package ca.utoronto.utm.paint;
 
 import javax.swing.*;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.*;
 import java.awt.event.*;
 /**
  * This is the top level View+Controller, it contains other aspects of the View+Controller.
@@ -35,8 +34,8 @@ public class View extends JFrame implements ActionListener {
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
 		this.configurationChooserPanel = new ConfigurationChooserPanel(this);
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
-		//c.add(this.configurationChooserPanel, BorderLayout.SOUTH);
-	
+		c.add(this.configurationChooserPanel, BorderLayout.NORTH);
+
 		this.model=model;
 		
 		this.paintPanel = new PaintPanel(model, this);
@@ -54,6 +53,8 @@ public class View extends JFrame implements ActionListener {
 	public ShapeChooserPanel getShapeChooserPanel() {
 		return shapeChooserPanel;
 	}
+
+	public ConfigurationChooserPanel getConfigurationChooserPanel() {return configurationChooserPanel;}
 
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
