@@ -1,5 +1,7 @@
 package ca.utoronto.utm.paint;
 
+import ca.utoronto.utm.paint.Point;
+
 public interface Shape {
 
 
