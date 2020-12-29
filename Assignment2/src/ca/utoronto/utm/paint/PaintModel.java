@@ -75,7 +75,7 @@ public class PaintModel extends Observable {
 			this.commands.add(command);
 			commandLog += 1;
 			// downsize
-			this.downsizeCommands();
+			// this.downsizeCommands();
 		}
 	}
 
