@@ -37,7 +37,10 @@ public class PolyLineState implements LineComponentState{
      * @param event
      */
     public void mouseExited(MouseEvent event){
-        this.completed = true;
+        if (polyLineCreated != null) {
+            this.completed = true;
+            System.out.println("Polyline is completed");
+        }
     }
 
     public void mouseMoved(MouseEvent event){

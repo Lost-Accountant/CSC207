@@ -215,34 +215,19 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// construct and send command even if not done.
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
+
 	}
 
 	// MouseListener below
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// encounter 2 situations
-		// Situation A: the previous mouse movement made a completed creation
-		if (currentState.isCompleted()){
-			// reset the state to construct new creation.
-			this.resetAfterCompletion();
-		} // Situation B: the previous mouse movement did not make a completed creation
-		else {
-			// revoke previous command to set up new command later
-			// unless the previous command is for a finished product.
-			if (this.commandCreated != null) {
-				this.model.revokeCommand();
-			}
-		}
 		// do action based on current state
 		currentState.mouseClicked(e);
 
 		// construct and send command even if not done.
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
-	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -256,16 +241,18 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				this.model.revokeCommand();
 			}
 		}
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// do action based on current state
 		currentState.mousePressed(e);
 
 		// construct and send command even if not done.
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
-	}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -279,16 +266,18 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				this.model.revokeCommand();
 			}
 		}
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// do action based on current state
 		currentState.mouseReleased(e);
 
 		// construct and send command even if not done.
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
-	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -302,16 +291,18 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				this.model.revokeCommand();
 			}
 		}
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
 		// do action based on current state
 		currentState.mouseEntered(e);
 
 		// construct and send command even if not done.
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
-	}
 
-	@Override
-	public void mouseExited(MouseEvent e) {
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -325,12 +316,32 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				this.model.revokeCommand();
 			}
 		}
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 		// do action based on current state
 		currentState.mouseExited(e);
 
 		// construct and send command even if not done.
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
+
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			this.resetAfterCompletion();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
+			}
+		}
+
 	}
 
 	/**
