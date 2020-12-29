@@ -1,9 +1,14 @@
 package ca.utoronto.utm.paint;
 
+import ca.utoronto.utm.paint.Panels.ColorPanel;
+import ca.utoronto.utm.paint.Panels.LineThicknessPanel;
+
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+
+
 /**
  * This is the top level View+Controller, it contains other aspects of the View+Controller.
  * @author arnold
@@ -18,8 +23,10 @@ public class View extends JFrame implements ActionListener {
 	// The components that make this up
 	private PaintPanel paintPanel;
 	private ShapeChooserPanel shapeChooserPanel;
-	private ConfigurationChooserPanel configurationChooserPanel;
-	
+
+	// Configurations
+	private LineThicknessPanel lineThicknessPanel;
+	private ColorPanel colorPanel;
 	
 	public View(PaintModel model) {
 		super("Paint"); // set the title and do other JFrame init
@@ -32,9 +39,12 @@ public class View extends JFrame implements ActionListener {
 		// c.add(new JButton("South"),BorderLayout.SOUTH);
 		// c.add(new JButton("East"),BorderLayout.EAST);
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
-		this.configurationChooserPanel = new ConfigurationChooserPanel(this);
+		this.lineThicknessPanel = new LineThicknessPanel(this);
+		this.colorPanel = new ColorPanel(this);
+
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
-		c.add(this.configurationChooserPanel, BorderLayout.NORTH);
+		c.add(this.lineThicknessPanel, BorderLayout.NORTH);
+		c.add(this.colorPanel, BorderLayout.EAST);
 
 		this.model=model;
 		
@@ -54,7 +64,9 @@ public class View extends JFrame implements ActionListener {
 		return shapeChooserPanel;
 	}
 
-	public ConfigurationChooserPanel getConfigurationChooserPanel() {return configurationChooserPanel;}
+	public LineThicknessPanel getlineThicknessPanel() {return lineThicknessPanel;}
+
+	public ColorPanel getColorPanel(){return colorPanel;}
 
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
