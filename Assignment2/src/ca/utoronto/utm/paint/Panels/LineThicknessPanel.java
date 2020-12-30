@@ -16,7 +16,7 @@ public class LineThicknessPanel extends JPanel implements ChangeListener {
     static final int LINE_MAX = 10;
 
     // title label
-    static JLabel lineThichknessTitle;
+    private JLabel lineThichknessTitle;
     private JSlider lineThickness;
 
     public LineThicknessPanel(View view) {

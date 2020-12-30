@@ -31,15 +31,6 @@ public class ColorPanel extends JPanel implements ActionListener {
     }
 
     public Color getColor(String color){
-//       //     Field field = Class.forName("java.awt.Color").getField(color.toLowerCase());
-       //     Color returnColor = (Color)field.get(null);
-            // make it semi transparent
-       //     return new Color(returnColor.getRed(), returnColor.getGreen(), returnColor.getBlue(), 50);
-       // } catch (Exception e){
-        //    return null;
-        //}
-        // reflection seems not steady
-
         Color returnColor = null;
         switch(color){
             case "Red":

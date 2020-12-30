@@ -1,6 +1,7 @@
 package ca.utoronto.utm.paint;
 
 import ca.utoronto.utm.paint.Panels.ColorPanel;
+import ca.utoronto.utm.paint.Panels.FillPanel;
 import ca.utoronto.utm.paint.Panels.LineThicknessPanel;
 
 import javax.swing.*;
@@ -27,6 +28,7 @@ public class View extends JFrame implements ActionListener {
 	// Configurations
 	private LineThicknessPanel lineThicknessPanel;
 	private ColorPanel colorPanel;
+	private FillPanel fillPanel;
 	
 	public View(PaintModel model) {
 		super("Paint"); // set the title and do other JFrame init
@@ -41,10 +43,12 @@ public class View extends JFrame implements ActionListener {
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
 		this.lineThicknessPanel = new LineThicknessPanel(this);
 		this.colorPanel = new ColorPanel(this);
+		this.fillPanel = new FillPanel(this);
 
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
 		c.add(this.lineThicknessPanel, BorderLayout.NORTH);
 		c.add(this.colorPanel, BorderLayout.EAST);
+		c.add(this.fillPanel, BorderLayout.SOUTH);
 
 		this.model=model;
 		
