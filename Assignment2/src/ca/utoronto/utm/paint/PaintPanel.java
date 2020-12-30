@@ -1,5 +1,8 @@
 package ca.utoronto.utm.paint;
 
+import ca.utoronto.utm.paint.Configuration.Configuration;
+import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -18,6 +21,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private View view; // So we can talk to our parent or other components of the view
 	private State currentState; // Set different behavior based on states.
 	private Command commandCreated; // create command to sent to Paint Model.
+	private Configuration configuration;
 	
 	public PaintPanel(PaintModel model, View view){
 		this.setBackground(Color.white);
@@ -30,7 +34,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		
 		this.view = view;
 
+		// default
 		this.currentState = new CircleState();
+		this.configuration = new ShapeConfiguration(Color.BLACK, 1, false);
+
+
 		this.commandCreated = null;
 	}
 
