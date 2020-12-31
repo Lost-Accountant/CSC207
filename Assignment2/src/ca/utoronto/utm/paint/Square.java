@@ -1,12 +1,15 @@
 package ca.utoronto.utm.paint;
 
+import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+
 /**
  * Draw a square that is a rectangle with the same
  * width and height.
  */
 public class Square extends Rectangle{
-    public Square(Point centre, int width){
-        super(centre, width, width);
+
+    public Square(Point centre, int width, ShapeConfiguration configuration){
+        super(centre, width, width, configuration);
     }
 
     @Override

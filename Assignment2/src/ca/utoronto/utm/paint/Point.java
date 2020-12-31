@@ -1,13 +1,17 @@
 package ca.utoronto.utm.paint;
 
+
+import ca.utoronto.utm.paint.Configuration.Configuration;
+import ca.utoronto.utm.paint.Configuration.PointConfiguration;
+import sun.security.krb5.Config;
+
 public class Point {
     private int x, y;
-    private String color;
-    private int lineThickness;
+    private PointConfiguration configuration;
 
-
-    Point(int x, int y){
+    Point(int x, int y, PointConfiguration config){
         this.x=x; this.y=y;
+        this.configuration = config;
     }
     public int getX() {
         return x;
@@ -23,6 +27,14 @@ public class Point {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void setConfiguration(PointConfiguration config){
+        this.configuration = config;
+    }
+
+    public Configuration getConfiguration(){
+        return configuration;
     }
 
     public int getDistance(Point p1){

@@ -1,14 +1,18 @@
 package ca.utoronto.utm.paint;
 
+import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+
 import java.util.ArrayList;
 
 public class PolyLine implements LineComponent{
 
     private ArrayList<Point> points;
+    private LineConfiguration configuration;
 
-    public PolyLine(Point startPoint){
+    public PolyLine(Point startPoint, LineConfiguration configuration){
         this.points = new ArrayList<Point>();
         this.points.add(startPoint);
+        this.configuration = configuration;
     }
 
     public Point getStartPoint(){
@@ -44,5 +48,15 @@ public class PolyLine implements LineComponent{
             initialPoints.add(this.getEndPoint());
             return initialPoints;
         }
+    }
+
+    @Override
+    public void setConfiguration(LineConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    @Override
+    public LineConfiguration getConfiguration() {
+        return configuration;
     }
 }
