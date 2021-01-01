@@ -1,6 +1,6 @@
 package ca.utoronto.utm.paint.State;
 
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
 import ca.utoronto.utm.paint.Shape.Circle;
 
@@ -9,9 +9,9 @@ import java.awt.event.MouseEvent;
 public class CircleState implements ShapeState{
     private Circle circleCreated;
     private boolean completed;
-    private ShapeConfiguration configuration;
+    private Configuration configuration;
 
-    public CircleState(ShapeConfiguration configuration){
+    public CircleState(Configuration configuration){
         this.circleCreated = null;
         this.completed = false;
         this.configuration = configuration;
@@ -26,7 +26,7 @@ public class CircleState implements ShapeState{
      */
     public void mousePressed(MouseEvent event){
         if(circleCreated == null) {
-            Point centre = new Point(event.getX(), event.getY(), null);
+            Point centre = new Point(event.getX(), event.getY(), configuration);
             circleCreated = new Circle(centre, 0, configuration);
         }
     }
@@ -80,12 +80,12 @@ public class CircleState implements ShapeState{
         return getShapeCreated();
     }
 
-    public void setConfiguration(ShapeConfiguration configuration){
+    public void setConfiguration(Configuration configuration){
         this.configuration = configuration;
         this.getCreation().setConfiguration(configuration);
     }
 
-    public ShapeConfiguration getConfiguration(){
+    public Configuration getConfiguration(){
         return this.configuration;
     }
 }

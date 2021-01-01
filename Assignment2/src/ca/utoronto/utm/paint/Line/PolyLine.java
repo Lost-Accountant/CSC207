@@ -1,15 +1,16 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Line;
 
-import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
+import ca.utoronto.utm.paint.Point;
 
 import java.util.ArrayList;
 
-public class Squiggle implements LineComponent{
+public class PolyLine implements LineComponent{
 
     private ArrayList<Point> points;
-    private LineConfiguration configuration;
+    private Configuration configuration;
 
-    public Squiggle(Point startPoint, LineConfiguration configuration){
+    public PolyLine(Point startPoint, Configuration configuration){
         this.points = new ArrayList<Point>();
         this.points.add(startPoint);
         this.configuration = configuration;
@@ -35,21 +36,28 @@ public class Squiggle implements LineComponent{
         points.add(newPoint);
     }
 
-    public ArrayList<Point> getPoints() {
-        return points;
-    }
-
     public void removeLastPoint(){
         points.remove(points.size() - 1);
     }
 
+    public ArrayList<Point> getPoints() {
+        if (points.size() > 1) {
+            return points;
+        } else{
+            ArrayList<Point> initialPoints = new ArrayList<Point>();
+            initialPoints.add(this.getStartPoint());
+            initialPoints.add(this.getEndPoint());
+            return initialPoints;
+        }
+    }
+
     @Override
-    public void setConfiguration(LineConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }
 
     @Override
-    public LineConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 }

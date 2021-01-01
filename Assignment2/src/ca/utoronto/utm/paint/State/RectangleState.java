@@ -1,6 +1,6 @@
 package ca.utoronto.utm.paint.State;
 
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
 import ca.utoronto.utm.paint.Shape.Rectangle;
 
@@ -9,9 +9,9 @@ import java.awt.event.MouseEvent;
 public class RectangleState implements ShapeState{
     private Rectangle rectangleCreated;
     private boolean completed;
-    private ShapeConfiguration configuration;
+    private Configuration configuration;
 
-    public RectangleState(ShapeConfiguration configuration){
+    public RectangleState(Configuration configuration){
         this.rectangleCreated = null;
         this.completed = false;
         this.configuration = configuration;
@@ -25,7 +25,7 @@ public class RectangleState implements ShapeState{
      */
     public void mousePressed(MouseEvent event){
         if(rectangleCreated == null) {
-            Point centre = new Point(event.getX(), event.getY(), null);
+            Point centre = new Point(event.getX(), event.getY(), configuration);
             rectangleCreated = new Rectangle(centre, 0, 0, configuration);
         }
     }
@@ -90,13 +90,13 @@ public class RectangleState implements ShapeState{
     }
 
     @Override
-    public void setConfiguration(ShapeConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
         this.getCreation().setConfiguration(configuration);
     }
 
     @Override
-    public ShapeConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 }

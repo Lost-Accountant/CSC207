@@ -1,7 +1,7 @@
 package ca.utoronto.utm.paint.State;
 
-import ca.utoronto.utm.paint.Configuration.LineConfiguration;
-import ca.utoronto.utm.paint.Line;
+import ca.utoronto.utm.paint.Configuration.Configuration;
+import ca.utoronto.utm.paint.Line.Line;
 import ca.utoronto.utm.paint.Point;
 
 import java.awt.event.MouseEvent;
@@ -9,9 +9,9 @@ import java.awt.event.MouseEvent;
 public class LineState implements LineComponentState{
     private Line lineCreated;
     private boolean completed;
-    private LineConfiguration configuration;
+    private Configuration configuration;
 
-    public LineState(LineConfiguration configuration){
+    public LineState(Configuration configuration){
         this.lineCreated = null;
         this.completed = false;
         this.configuration = configuration;
@@ -86,13 +86,13 @@ public class LineState implements LineComponentState{
     }
 
     @Override
-    public void setConfiguration(LineConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
         this.getCreation().setConfiguration(configuration);
     }
 
     @Override
-    public LineConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 }

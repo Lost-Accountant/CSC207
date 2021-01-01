@@ -5,7 +5,7 @@ import ca.utoronto.utm.paint.Command.AddPointCommand;
 import ca.utoronto.utm.paint.Command.AddShapeCommand;
 import ca.utoronto.utm.paint.Command.Command;
 import ca.utoronto.utm.paint.Configuration.Configuration;
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Line.LineComponent;
 import ca.utoronto.utm.paint.Shape.Circle;
 import ca.utoronto.utm.paint.Shape.Shape;
 import ca.utoronto.utm.paint.State.*;
@@ -42,8 +42,8 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		this.view = view;
 
 		// default
-		this.currentState = new CircleState();
-		this.configuration = new ShapeConfiguration(Color.BLACK, 1, false);
+		this.configuration = new Configuration(Color.BLUE, 1, true);
+		this.currentState = new CircleState(this.configuration);
 
 
 		this.commandCreated = null;
@@ -84,8 +84,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		ArrayList<Point> existingPoints = this.model.getPoints();
 		if(!existingPoints.isEmpty()) {
 			for (Point p : existingPoints) {
+				Configuration currentConfig = p.getConfiguration();
 				int x = p.getX();
 				int y = p.getY();
+				// point only cares about color
+				g2d.setColor(currentConfig.getColor());
 				// draw points by drawing tiny circles
 				g2d.drawOval(x, y, 1, 1);
 			}
@@ -98,17 +101,51 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	 */
 	public void paintAllShapes(Graphics2D g2d){
 		ArrayList<Shape> existingShapes = this.model.getShapes();
+
 		if(!existingShapes.isEmpty()) {
-			for (ca.utoronto.utm.paint.Shape.Shape s : existingShapes) {
+			for (Shape s : existingShapes) {
+				Configuration currentConfig = s.getConfiguration();
+
+				// set color
+				g2d.setColor(currentConfig.getColor());
+				// set line thickness
+				g2d.setStroke(new BasicStroke(currentConfig.getLineThickness()));
+
 				Point centre = s.getCentre();
-				// if shape is circle
-				if (s instanceof Circle) {
-					g2d.drawOval(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
-							s.getWidth(), s.getHeight());
-				} // same way to draw rectangle and square
-				else if (s instanceof ca.utoronto.utm.paint.Shape.Rectangle) {
-					g2d.drawRect(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
-							s.getWidth(), s.getHeight());
+
+				// different function for fill
+				if (currentConfig.isFilled()) {
+					// if shape is circle
+					if (s instanceof Circle) {
+						g2d.fillOval(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
+								s.getWidth(), s.getHeight());
+						System.out.println(centre.getX() + ", " + centre.getY());
+						System.out.println(s.getHeight());
+						System.out.println(s.getWidth());
+						System.out.println(s.getConfiguration().getColor());
+						System.out.println(s.getConfiguration().getLineThickness());
+					} // same way to draw rectangle and square
+					else if (s instanceof Rectangle) {
+						g2d.fillRect(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
+								s.getWidth(), s.getHeight());
+
+						// the following not showing up
+						System.out.println(centre.getX() + ", " + centre.getY());
+						System.out.println(s.getHeight());
+						System.out.println(s.getWidth());
+						System.out.println(s.getConfiguration().getColor());
+						System.out.println(s.getConfiguration().getLineThickness());
+					}
+				} else {
+					// if shape is circle
+					if (s instanceof Circle) {
+						g2d.drawOval(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
+								s.getWidth(), s.getHeight());
+					} // same way to draw rectangle and square
+					else if (s instanceof ca.utoronto.utm.paint.Shape.Rectangle) {
+						g2d.drawRect(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
+								s.getWidth(), s.getHeight());
+					}
 				}
 			}
 		}
@@ -118,6 +155,13 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		ArrayList<LineComponent> existingLines = this.model.getLines();
 		if (!existingLines.isEmpty()) {
 			for (LineComponent l : existingLines) {
+				Configuration currentConfig = l.getConfiguration();
+
+				// set color
+				g2d.setColor(currentConfig.getColor());
+				// set line thickness
+				g2d.setStroke(new BasicStroke(currentConfig.getLineThickness()));
+
 				// for each LineComponent, connect all points within each.
 				ArrayList<Point> points = l.getPoints();
 				for (int i = 0; i < points.size() - 1; i++) {
@@ -144,25 +188,25 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	public void setCurrentState(String mode){
 		switch(mode){
 			case "Circle":
-				currentState = new CircleState();
+				currentState = new CircleState(configuration);
 				break;
 			case "Rectangle":
-				currentState = new RectangleState();
+				currentState = new RectangleState(this.configuration);
 				break;
 			case "Square":
-				currentState = new SquareState();
+				currentState = new SquareState(configuration);
 				break;
 			case "Point":
-				currentState = new PointState();
+				currentState = new PointState(configuration);
 				break;
 			case "Squiggle":
-				currentState = new SquiggleState();
+				currentState = new SquiggleState(configuration);
 				break;
 			case "Line":
-				currentState = new LineState();
+				currentState = new LineState(configuration);
 				break;
 			case "Polyline":
-				currentState = new PolyLineState();
+				currentState = new PolyLineState(configuration);
 				break;
 		}
 		System.out.println(mode + "selected");

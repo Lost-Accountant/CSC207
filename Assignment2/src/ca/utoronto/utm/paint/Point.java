@@ -2,14 +2,12 @@ package ca.utoronto.utm.paint;
 
 
 import ca.utoronto.utm.paint.Configuration.Configuration;
-import ca.utoronto.utm.paint.Configuration.PointConfiguration;
-import sun.security.krb5.Config;
 
 public class Point {
     private int x, y;
-    private PointConfiguration configuration;
+    private Configuration configuration;
 
-    public Point(int x, int y, PointConfiguration config){
+    public Point(int x, int y, Configuration config){
         this.x=x; this.y=y;
         this.configuration = config;
     }
@@ -29,7 +27,7 @@ public class Point {
         this.y = y;
     }
 
-    public void setConfiguration(PointConfiguration config){
+    public void setConfiguration(Configuration config){
         this.configuration = config;
     }
 

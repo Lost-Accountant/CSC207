@@ -1,6 +1,6 @@
 package ca.utoronto.utm.paint.Shape;
 
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
 
 /**
@@ -10,9 +10,9 @@ import ca.utoronto.utm.paint.Point;
 public class Circle implements Shape{
     private Point centre;
     private int radius;
-    private ShapeConfiguration configuration;
+    private Configuration configuration;
 
-    public Circle(Point centre, int radius, ShapeConfiguration configuration){
+    public Circle(Point centre, int radius, Configuration configuration){
         this.centre = centre;
         this.radius = radius;
         this.configuration = configuration;
@@ -51,12 +51,12 @@ public class Circle implements Shape{
     }
 
     @Override
-    public void setConfiguration(ShapeConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }
 
     @Override
-    public ShapeConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 }

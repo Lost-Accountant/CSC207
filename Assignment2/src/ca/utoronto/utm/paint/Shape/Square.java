@@ -1,6 +1,6 @@
 package ca.utoronto.utm.paint.Shape;
 
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
 
 /**
@@ -9,7 +9,7 @@ import ca.utoronto.utm.paint.Point;
  */
 public class Square extends Rectangle{
 
-    public Square(Point centre, int width, ShapeConfiguration configuration){
+    public Square(Point centre, int width, Configuration configuration){
         super(centre, width, width, configuration);
     }
 

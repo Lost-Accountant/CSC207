@@ -1,17 +1,17 @@
 package ca.utoronto.utm.paint.State;
 
-import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
-import ca.utoronto.utm.paint.Squiggle;
+import ca.utoronto.utm.paint.Line.Squiggle;
 
 import java.awt.event.MouseEvent;
 
 public class SquiggleState implements LineComponentState{
     private Squiggle squiggleCreated;
     private boolean completed;
-    private LineConfiguration configuration;
+    private Configuration configuration;
 
-    public SquiggleState(LineConfiguration configuration){
+    public SquiggleState(Configuration configuration){
         this.squiggleCreated = null;
         this.completed = false;
         this.configuration = configuration;
@@ -79,13 +79,13 @@ public class SquiggleState implements LineComponentState{
     }
 
     @Override
-    public void setConfiguration(LineConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
         this.getCreation().setConfiguration(configuration);
     }
 
     @Override
-    public LineConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 }

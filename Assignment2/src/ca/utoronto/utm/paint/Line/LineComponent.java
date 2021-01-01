@@ -1,6 +1,7 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Line;
 
-import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
+import ca.utoronto.utm.paint.Point;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public interface LineComponent {
 
     public ArrayList<Point> getPoints();
 
-    public void setConfiguration(LineConfiguration configuration);
+    public void setConfiguration(Configuration configuration);
 
-    public LineConfiguration getConfiguration();
+    public Configuration getConfiguration();
 }

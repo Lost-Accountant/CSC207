@@ -1,6 +1,6 @@
 package ca.utoronto.utm.paint.Shape;
 
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
 
 /**
@@ -11,9 +11,9 @@ public class Rectangle implements Shape{
     private int width;
     private int height;
     private Point centre;
-    private ShapeConfiguration configuration;
+    private Configuration configuration;
 
-    public Rectangle(Point centre, int height, int width, ShapeConfiguration configuration){
+    public Rectangle(Point centre, int height, int width, Configuration configuration){
         this.centre = centre;
         this.height = height;
         this.width = width;
@@ -44,13 +44,11 @@ public class Rectangle implements Shape{
         this.width = width;
     }
 
-    @Override
-    public void setConfiguration(ShapeConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }
 
-    @Override
-    public ShapeConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 }

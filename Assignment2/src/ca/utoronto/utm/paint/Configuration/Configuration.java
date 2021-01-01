@@ -1,18 +1,41 @@
 package ca.utoronto.utm.paint.Configuration;
 
-
 import java.awt.*;
 
-public interface Configuration {
-    public void setColor(Color color);
+public class Configuration {
+    private Color color;
+    private int lineThickness;
+    private boolean isFilled;
 
-    public Color getColor();
+    public Configuration(Color color, int lineThickness, boolean filled){
+        this.color = color;
+        this.lineThickness = lineThickness;
+        this.isFilled = filled;
+    }
 
-    public void setLineThickness(int lineThickness);
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
-    public int getLineThickness();
+    public void setIsFilled(boolean isFilled) {
+        this.isFilled = isFilled;
+    }
 
-    public void setIsFilled(boolean isFilled);
 
-    public boolean isFilled();
+    public void setLineThickness(int lineThickness) {
+        this.lineThickness = lineThickness;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+
+    public boolean isFilled() {
+        return isFilled;
+    }
+
+    public int getLineThickness() {
+        return lineThickness;
+    }
 }

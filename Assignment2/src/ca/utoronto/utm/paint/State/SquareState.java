@@ -1,6 +1,6 @@
 package ca.utoronto.utm.paint.State;
 
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
 import ca.utoronto.utm.paint.Shape.Square;
 
@@ -9,9 +9,9 @@ import java.awt.event.MouseEvent;
 public class SquareState implements ShapeState{
     private Square squareCreated;
     private boolean completed;
-    private ShapeConfiguration configuration;
+    private Configuration configuration;
 
-    public SquareState(ShapeConfiguration configuration){
+    public SquareState(Configuration configuration){
         this.squareCreated = null;
         this.completed = false;
         this.configuration = configuration;
@@ -24,7 +24,7 @@ public class SquareState implements ShapeState{
      */
     public void mousePressed(MouseEvent event){
         if(squareCreated == null) {
-            Point centre = new Point(event.getX(), event.getY(), null);
+            Point centre = new Point(event.getX(), event.getY(), configuration);
             squareCreated = new Square(centre, 0, configuration);
         }
     }
@@ -88,12 +88,12 @@ public class SquareState implements ShapeState{
     }
 
     @Override
-    public ShapeConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 
     @Override
-    public void setConfiguration(ShapeConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
         this.getCreation().setConfiguration(configuration);
     }

@@ -1,6 +1,7 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Line;
 
-import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
+import ca.utoronto.utm.paint.Point;
 
 import java.util.ArrayList;
 
@@ -8,9 +9,9 @@ public class Line implements LineComponent {
 
     private Point startPoint;
     private Point endPoint;
-    private LineConfiguration configuration;
+    private Configuration configuration;
 
-    public Line(Point startPoint, Point endPoint, LineConfiguration configuration){
+    public Line(Point startPoint, Point endPoint, Configuration configuration){
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.configuration = configuration;
@@ -40,12 +41,12 @@ public class Line implements LineComponent {
     }
 
     @Override
-    public void setConfiguration(LineConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }
 
     @Override
-    public LineConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 }

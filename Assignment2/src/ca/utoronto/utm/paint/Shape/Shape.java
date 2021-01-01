@@ -1,6 +1,6 @@
 package ca.utoronto.utm.paint.Shape;
 
-import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Point;
 
 public interface Shape {
@@ -18,7 +18,7 @@ public interface Shape {
 
     public abstract void setHeight(int height);
 
-    public void setConfiguration(ShapeConfiguration config);
+    public void setConfiguration(Configuration config);
 
-    public ShapeConfiguration getConfiguration();
+    public Configuration getConfiguration();
 }

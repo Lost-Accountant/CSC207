@@ -1,7 +1,6 @@
 package ca.utoronto.utm.paint.State;
 
 import ca.utoronto.utm.paint.Configuration.Configuration;
-import ca.utoronto.utm.paint.Configuration.PointConfiguration;
 import ca.utoronto.utm.paint.Point;
 
 import java.awt.event.MouseEvent;
@@ -9,9 +8,9 @@ import java.awt.event.MouseEvent;
 public class PointState implements State{
     private Point pointCreated;
     private boolean completed;
-    private PointConfiguration configuration;
+    private Configuration configuration;
 
-    public PointState(PointConfiguration configuration){
+    public PointState(Configuration configuration){
         this.pointCreated = null;
         this.completed = false;
         this.configuration = configuration;
@@ -62,12 +61,12 @@ public class PointState implements State{
      * Update both current state and the current creation.
      * @param configuration
      */
-    public void setConfiguration(PointConfiguration configuration){
+    public void setConfiguration(Configuration configuration){
         this.configuration = configuration;
         this.getCreation().setConfiguration(configuration);
     }
 
-    public PointConfiguration getConfiguration(){
+    public Configuration getConfiguration(){
         return configuration;
     }
 }

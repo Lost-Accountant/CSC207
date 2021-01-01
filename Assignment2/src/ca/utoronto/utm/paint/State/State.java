@@ -16,4 +16,5 @@ public interface State {
     public boolean isCompleted();
     public Object getCreation();
     public Configuration getConfiguration();
+    public void setConfiguration(Configuration configuration);
 }
