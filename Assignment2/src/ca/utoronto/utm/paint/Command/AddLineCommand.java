@@ -1,4 +1,7 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Command;
+
+import ca.utoronto.utm.paint.LineComponent;
+import ca.utoronto.utm.paint.PaintModel;
 
 public class AddLineCommand implements Command{
 

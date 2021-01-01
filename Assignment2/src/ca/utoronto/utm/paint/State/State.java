@@ -1,4 +1,6 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.State;
+
+import ca.utoronto.utm.paint.Configuration.Configuration;
 
 import java.awt.event.MouseEvent;
 
@@ -13,4 +15,5 @@ public interface State {
     public void reset();
     public boolean isCompleted();
     public Object getCreation();
+    public Configuration getConfiguration();
 }

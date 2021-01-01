@@ -1,14 +1,20 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.State;
+
+import ca.utoronto.utm.paint.Configuration.Configuration;
+import ca.utoronto.utm.paint.Configuration.PointConfiguration;
+import ca.utoronto.utm.paint.Point;
 
 import java.awt.event.MouseEvent;
 
 public class PointState implements State{
     private Point pointCreated;
     private boolean completed;
+    private PointConfiguration configuration;
 
-    public PointState(){
+    public PointState(PointConfiguration configuration){
         this.pointCreated = null;
         this.completed = false;
+        this.configuration = configuration;
     }
 
     /**
@@ -23,7 +29,7 @@ public class PointState implements State{
 
     public void mousePressed(MouseEvent event){
         if(pointCreated == null) {
-            pointCreated = new Point(event.getX(), event.getY());
+            pointCreated = new Point(event.getX(), event.getY(), configuration);
         }
     }
     public void mouseReleased(MouseEvent event){
@@ -50,5 +56,18 @@ public class PointState implements State{
 
     public Point getCreation(){
         return getPointCreated();
+    }
+
+    /**
+     * Update both current state and the current creation.
+     * @param configuration
+     */
+    public void setConfiguration(PointConfiguration configuration){
+        this.configuration = configuration;
+        this.getCreation().setConfiguration(configuration);
+    }
+
+    public PointConfiguration getConfiguration(){
+        return configuration;
     }
 }

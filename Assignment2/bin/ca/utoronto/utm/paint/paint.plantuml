@@ -3,7 +3,7 @@
 title __PAINT's Class Diagram__\n
 
   namespace ca.utoronto.utm.paint {
-    class ca.utoronto.utm.paint.Circle {
+    class ca.utoronto.utm.paint.Shape.Circle {
         - radius : int
         + Circle()
         + getCentre()
@@ -87,7 +87,7 @@ title __PAINT's Class Diagram__\n
   }
   
 
-  ca.utoronto.utm.paint.Circle o-- ca.utoronto.utm.paint.Point : centre
+  ca.utoronto.utm.paint.Shape.Circle o-- ca.utoronto.utm.paint.Point : centre
   ca.utoronto.utm.paint.Paint o-- ca.utoronto.utm.paint.PaintModel : model
   ca.utoronto.utm.paint.Paint o-- ca.utoronto.utm.paint.View : view
   ca.utoronto.utm.paint.PaintModel -up-|> java.util.Observable
@@ -95,7 +95,7 @@ title __PAINT's Class Diagram__\n
   ca.utoronto.utm.paint.PaintPanel .up.|> java.awt.event.MouseMotionListener
   ca.utoronto.utm.paint.PaintPanel .up.|> java.util.Observer
   ca.utoronto.utm.paint.PaintPanel -up-|> javax.swing.JPanel
-  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.Circle : circle
+  ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.Shape.Circle : circle
   ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.PaintModel : model
   ca.utoronto.utm.paint.PaintPanel o-- ca.utoronto.utm.paint.View : view
   ca.utoronto.utm.paint.ShapeChooserPanel .up.|> java.awt.event.ActionListener

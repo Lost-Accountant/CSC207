@@ -1,4 +1,7 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Command;
+
+import ca.utoronto.utm.paint.PaintModel;
+import ca.utoronto.utm.paint.Shape.Shape;
 
 public class AddShapeCommand implements Command{
 

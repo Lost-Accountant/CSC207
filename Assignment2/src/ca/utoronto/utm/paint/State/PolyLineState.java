@@ -1,14 +1,20 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.State;
+
+import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+import ca.utoronto.utm.paint.Point;
+import ca.utoronto.utm.paint.PolyLine;
 
 import java.awt.event.MouseEvent;
 
 public class PolyLineState implements LineComponentState{
     private PolyLine polyLineCreated;
     private boolean completed;
+    private LineConfiguration configuration;
 
-    public PolyLineState(){
+    public PolyLineState(LineConfiguration configuration){
         this.polyLineCreated = null;
         this.completed = false;
+        this.configuration = configuration;
     }
 
     /**
@@ -23,9 +29,9 @@ public class PolyLineState implements LineComponentState{
      */
     public void mouseClicked(MouseEvent event){
         if (polyLineCreated == null){
-            polyLineCreated = new PolyLine(new Point(event.getX(), event.getY()));
+            polyLineCreated = new PolyLine(new Point(event.getX(), event.getY(), null), configuration);
         } else {
-            polyLineCreated.addPoint(new Point(event.getX(), event.getY()));
+            polyLineCreated.addPoint(new Point(event.getX(), event.getY(), null));
         }
     }
 
@@ -74,5 +80,16 @@ public class PolyLineState implements LineComponentState{
 
     public PolyLine getCreation(){
         return getLineComponentCreated();
+    }
+
+    @Override
+    public LineConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    @Override
+    public void setConfiguration(LineConfiguration configuration) {
+        this.configuration = configuration;
+        this.getCreation().setConfiguration(configuration);
     }
 }

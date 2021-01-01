@@ -1,14 +1,20 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.State;
+
+import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+import ca.utoronto.utm.paint.Point;
+import ca.utoronto.utm.paint.Squiggle;
 
 import java.awt.event.MouseEvent;
 
 public class SquiggleState implements LineComponentState{
     private Squiggle squiggleCreated;
     private boolean completed;
+    private LineConfiguration configuration;
 
-    public SquiggleState(){
+    public SquiggleState(LineConfiguration configuration){
         this.squiggleCreated = null;
         this.completed = false;
+        this.configuration = configuration;
     }
 
     /**
@@ -17,7 +23,7 @@ public class SquiggleState implements LineComponentState{
      */
     public void mousePressed(MouseEvent event){
         if(squiggleCreated == null){
-            squiggleCreated = new Squiggle(new Point(event.getX(), event.getY()));
+            squiggleCreated = new Squiggle(new Point(event.getX(), event.getY(), null), configuration);
         }
     }
 
@@ -28,7 +34,7 @@ public class SquiggleState implements LineComponentState{
      */
     public void mouseDragged(MouseEvent event){
         if(squiggleCreated != null){
-            squiggleCreated.addPoint(new Point(event.getX(), event.getY()));
+            squiggleCreated.addPoint(new Point(event.getX(), event.getY(), null));
         }
     }
 
@@ -38,7 +44,7 @@ public class SquiggleState implements LineComponentState{
      */
     public void mouseReleased(MouseEvent event){
         if(squiggleCreated != null){
-            squiggleCreated.setEndPoint(new Point(event.getX(), event.getY()));
+            squiggleCreated.setEndPoint(new Point(event.getX(), event.getY(), null));
             this.completed = true;
         }
     }
@@ -70,5 +76,16 @@ public class SquiggleState implements LineComponentState{
 
     public Squiggle getCreation(){
         return getLineComponentCreated();
+    }
+
+    @Override
+    public void setConfiguration(LineConfiguration configuration) {
+        this.configuration = configuration;
+        this.getCreation().setConfiguration(configuration);
+    }
+
+    @Override
+    public LineConfiguration getConfiguration() {
+        return configuration;
     }
 }

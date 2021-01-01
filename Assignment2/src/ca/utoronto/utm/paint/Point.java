@@ -9,7 +9,7 @@ public class Point {
     private int x, y;
     private PointConfiguration configuration;
 
-    Point(int x, int y, PointConfiguration config){
+    public Point(int x, int y, PointConfiguration config){
         this.x=x; this.y=y;
         this.configuration = config;
     }

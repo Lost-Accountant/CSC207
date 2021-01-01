@@ -1,4 +1,4 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Command;
 
 public interface Command {
     public void execute();

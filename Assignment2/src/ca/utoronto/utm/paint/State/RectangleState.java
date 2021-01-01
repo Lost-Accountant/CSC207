@@ -1,14 +1,20 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.State;
+
+import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Point;
+import ca.utoronto.utm.paint.Shape.Rectangle;
 
 import java.awt.event.MouseEvent;
 
 public class RectangleState implements ShapeState{
     private Rectangle rectangleCreated;
     private boolean completed;
+    private ShapeConfiguration configuration;
 
-    public RectangleState(){
+    public RectangleState(ShapeConfiguration configuration){
         this.rectangleCreated = null;
         this.completed = false;
+        this.configuration = configuration;
     }
 
     /**
@@ -19,8 +25,8 @@ public class RectangleState implements ShapeState{
      */
     public void mousePressed(MouseEvent event){
         if(rectangleCreated == null) {
-            Point centre = new Point(event.getX(), event.getY());
-            rectangleCreated = new Rectangle(centre, 0, 0);
+            Point centre = new Point(event.getX(), event.getY(), null);
+            rectangleCreated = new Rectangle(centre, 0, 0, configuration);
         }
     }
 
@@ -81,5 +87,16 @@ public class RectangleState implements ShapeState{
 
     public Rectangle getCreation(){
         return getShapeCreated();
+    }
+
+    @Override
+    public void setConfiguration(ShapeConfiguration configuration) {
+        this.configuration = configuration;
+        this.getCreation().setConfiguration(configuration);
+    }
+
+    @Override
+    public ShapeConfiguration getConfiguration() {
+        return configuration;
     }
 }

@@ -1,5 +1,8 @@
 package ca.utoronto.utm.paint;
 
+import ca.utoronto.utm.paint.Command.Command;
+import ca.utoronto.utm.paint.Shape.Shape;
+
 import java.util.ArrayList;
 import java.util.Observable;
 

@@ -1,6 +1,7 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Shape;
 
 import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Point;
 
 /**
  * Draw a square that is a rectangle with the same

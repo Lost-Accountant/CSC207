@@ -1,7 +1,14 @@
 package ca.utoronto.utm.paint;
 
+import ca.utoronto.utm.paint.Command.AddLineCommand;
+import ca.utoronto.utm.paint.Command.AddPointCommand;
+import ca.utoronto.utm.paint.Command.AddShapeCommand;
+import ca.utoronto.utm.paint.Command.Command;
 import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Shape.Circle;
+import ca.utoronto.utm.paint.Shape.Shape;
+import ca.utoronto.utm.paint.State.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,14 +99,14 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	public void paintAllShapes(Graphics2D g2d){
 		ArrayList<Shape> existingShapes = this.model.getShapes();
 		if(!existingShapes.isEmpty()) {
-			for (Shape s : existingShapes) {
+			for (ca.utoronto.utm.paint.Shape.Shape s : existingShapes) {
 				Point centre = s.getCentre();
 				// if shape is circle
 				if (s instanceof Circle) {
 					g2d.drawOval(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
 							s.getWidth(), s.getHeight());
 				} // same way to draw rectangle and square
-				else if (s instanceof Rectangle) {
+				else if (s instanceof ca.utoronto.utm.paint.Shape.Rectangle) {
 					g2d.drawRect(centre.getX() - s.getWidth() / 2, centre.getY() - s.getHeight() / 2,
 							s.getWidth(), s.getHeight());
 				}

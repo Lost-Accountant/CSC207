@@ -1,14 +1,20 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.State;
+
+import ca.utoronto.utm.paint.Configuration.LineConfiguration;
+import ca.utoronto.utm.paint.Line;
+import ca.utoronto.utm.paint.Point;
 
 import java.awt.event.MouseEvent;
 
 public class LineState implements LineComponentState{
     private Line lineCreated;
     private boolean completed;
+    private LineConfiguration configuration;
 
-    public LineState(){
+    public LineState(LineConfiguration configuration){
         this.lineCreated = null;
         this.completed = false;
+        this.configuration = configuration;
     }
 
     public void mouseMoved(MouseEvent mouseEvent){
@@ -21,7 +27,7 @@ public class LineState implements LineComponentState{
      */
     public void mouseDragged(MouseEvent mouseEvent){
         if(this.lineCreated != null){
-            lineCreated.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+            lineCreated.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY(), null));
         }
     };
 
@@ -37,10 +43,10 @@ public class LineState implements LineComponentState{
      */
     public void mousePressed(MouseEvent mouseEvent){
         if(lineCreated == null) {
-            Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
-            Point endPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
+            Point startPoint = new Point(mouseEvent.getX(), mouseEvent.getY(), null);
+            Point endPoint = new Point(mouseEvent.getX(), mouseEvent.getY(), null);
 
-            lineCreated = new Line(startPoint, endPoint);
+            lineCreated = new Line(startPoint, endPoint, configuration);
         }
     };
 
@@ -51,7 +57,7 @@ public class LineState implements LineComponentState{
      */
     public void mouseReleased(MouseEvent mouseEvent){
         if(this.lineCreated != null){
-            lineCreated.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+            lineCreated.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY(), null));
             this.completed = true;
         }
     };
@@ -77,5 +83,16 @@ public class LineState implements LineComponentState{
 
     public Line getCreation(){
         return getLineComponentCreated();
+    }
+
+    @Override
+    public void setConfiguration(LineConfiguration configuration) {
+        this.configuration = configuration;
+        this.getCreation().setConfiguration(configuration);
+    }
+
+    @Override
+    public LineConfiguration getConfiguration() {
+        return configuration;
     }
 }

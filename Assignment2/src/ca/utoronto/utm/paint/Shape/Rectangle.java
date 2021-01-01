@@ -1,6 +1,7 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.Shape;
 
 import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Point;
 
 /**
  * Draw a rectangle that is part of the shape interface.

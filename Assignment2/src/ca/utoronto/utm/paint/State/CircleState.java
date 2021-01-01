@@ -1,14 +1,20 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.State;
+
+import ca.utoronto.utm.paint.Configuration.ShapeConfiguration;
+import ca.utoronto.utm.paint.Point;
+import ca.utoronto.utm.paint.Shape.Circle;
 
 import java.awt.event.MouseEvent;
 
 public class CircleState implements ShapeState{
     private Circle circleCreated;
     private boolean completed;
+    private ShapeConfiguration configuration;
 
-    public CircleState(){
+    public CircleState(ShapeConfiguration configuration){
         this.circleCreated = null;
         this.completed = false;
+        this.configuration = configuration;
     }
 
     public void mouseMoved(MouseEvent event){}
@@ -20,8 +26,8 @@ public class CircleState implements ShapeState{
      */
     public void mousePressed(MouseEvent event){
         if(circleCreated == null) {
-            Point centre = new Point(event.getX(), event.getY());
-            circleCreated = new Circle(centre, 0);
+            Point centre = new Point(event.getX(), event.getY(), null);
+            circleCreated = new Circle(centre, 0, configuration);
         }
     }
 
@@ -32,7 +38,7 @@ public class CircleState implements ShapeState{
      */
     public void mouseDragged(MouseEvent event){
         if(this.circleCreated != null) {
-            Point currentPosition = new Point(event.getX(), event.getY());
+            Point currentPosition = new Point(event.getX(), event.getY(), null);
             int newRadius = circleCreated.getCentre().getDistance(currentPosition);
             circleCreated.setRadius(newRadius);
         }
@@ -44,7 +50,7 @@ public class CircleState implements ShapeState{
      */
     public void mouseReleased(MouseEvent event){
         if(this.circleCreated != null){
-            Point currentPosition = new Point(event.getX(), event.getY());
+            Point currentPosition = new Point(event.getX(), event.getY(), null);
             int newRadius = circleCreated.getCentre().getDistance(currentPosition);
             circleCreated.setRadius(newRadius);
             this.completed = true;
@@ -72,5 +78,14 @@ public class CircleState implements ShapeState{
 
     public Circle getCreation(){
         return getShapeCreated();
+    }
+
+    public void setConfiguration(ShapeConfiguration configuration){
+        this.configuration = configuration;
+        this.getCreation().setConfiguration(configuration);
+    }
+
+    public ShapeConfiguration getConfiguration(){
+        return this.configuration;
     }
 }
