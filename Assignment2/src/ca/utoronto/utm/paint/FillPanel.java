@@ -1,4 +1,4 @@
-package ca.utoronto.utm.paint.Panels;
+package ca.utoronto.utm.paint;
 
 import ca.utoronto.utm.paint.View;
 
@@ -29,6 +29,7 @@ public class FillPanel extends JPanel implements ActionListener {
         // when clicked, switch filled status
         isFilled = !isFilled;
         this.switchButton(isFilled);
+        this.view.getPaintPanel().setIsFilled(isFilled);
 
     }
 

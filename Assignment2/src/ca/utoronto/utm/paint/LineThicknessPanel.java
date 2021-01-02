@@ -1,4 +1,4 @@
-package ca.utoronto.utm.paint.Panels;
+package ca.utoronto.utm.paint;
 
 import ca.utoronto.utm.paint.View;
 
@@ -48,7 +48,7 @@ public class LineThicknessPanel extends JPanel implements ChangeListener {
 
     @Override
     public void stateChanged(ChangeEvent e){
-        System.out.println(e.getSource());
         lineThichknessTitle.setText("Line Thickness: " + lineThickness.getValue());
+        this.view.getPaintPanel().setLineThickness(lineThickness.getValue());
     }
 }

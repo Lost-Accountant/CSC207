@@ -1,4 +1,4 @@
-package ca.utoronto.utm.paint.Panels;
+package ca.utoronto.utm.paint;
 
 import ca.utoronto.utm.paint.View;
 
@@ -66,7 +66,7 @@ public class ColorPanel extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e){
-        //this.view.getPaintPanel().setConfiguration(e.getActionCommand());
         System.out.println(e.getActionCommand());
+        this.view.getPaintPanel().setColor(getColor(e.getActionCommand()));
     }
 }

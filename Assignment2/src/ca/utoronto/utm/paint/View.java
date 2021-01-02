@@ -1,9 +1,5 @@
 package ca.utoronto.utm.paint;
 
-import ca.utoronto.utm.paint.Panels.ColorPanel;
-import ca.utoronto.utm.paint.Panels.FillPanel;
-import ca.utoronto.utm.paint.Panels.LineThicknessPanel;
-
 import javax.swing.*;
 
 import java.awt.*;
@@ -132,5 +128,13 @@ public class View extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
+		switch(e.getActionCommand()){
+			case "Redo":
+				paintPanel.redo();
+				break;
+			case "Undo":
+				paintPanel.undo();
+				break;
+		}
 	}
 }

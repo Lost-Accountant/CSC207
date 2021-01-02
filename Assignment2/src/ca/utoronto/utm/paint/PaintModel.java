@@ -18,7 +18,7 @@ public class PaintModel extends Observable {
 
 
 	private ArrayList<Command> commands = new ArrayList<Command>();
-	private int commandLog = 0; // allow redo feature of up to 5 commands.
+	private int commandLog = 0; // index for already invoked command
 	
 	
 	public void addPoint(Point p){
@@ -93,6 +93,16 @@ public class PaintModel extends Observable {
 			if (commandLog > 0) {
 				commandLog -= 1;
 			}
+		}
+	}
+
+	/**
+	 * Invoke the next command if there is command stored but not implemented.
+	 */
+	public void invokeNextCommand(){
+		if (commandLog < commands.size() - 1){
+			commandLog += 1;
+			commands.get(commandLog).execute();
 		}
 	}
 
