@@ -87,8 +87,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			for (Point p : existingPoints) {
 				int x = p.getX();
 				int y = p.getY();
-				// set color only
+				// set color
 				g2d.setColor(p.getConfiguration().getColor());
+				// set stroke
+				g2d.setStroke(new BasicStroke(p.getConfiguration().getLineThickness()));
+
 				// draw points by drawing tiny circles
 				g2d.drawOval(x, y, 1, 1);
 			}
@@ -259,13 +262,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	// MouseListener below
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// do action based on current state
-		currentState.mouseClicked(e);
-
-		// construct and send command even if not done.
-		// Because needs live update.
-		this.model.invokeCommand(this.constructCommand());
-
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -280,10 +276,30 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			}
 		}
 
+		// do action based on current state
+		currentState.mouseClicked(e);
+
+		// construct and send command even if not done.
+		// Because needs live update.
+		this.model.invokeCommand(this.constructCommand());
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		// encounter 2 situations
+		// Situation A: the previous mouse movement made a completed creation
+		if (currentState.isCompleted()){
+			// reset the state to construct new creation.
+			this.resetAfterCompletion();
+		} // Situation B: the previous mouse movement did not make a completed creation
+		else {
+			// revoke previous command to set up new command later
+			// unless the previous command is for a finished product.
+			if (this.commandCreated != null) {
+				this.model.revokeCommand();
+			}
+		}
+
 		// do action based on current state
 		currentState.mousePressed(e);
 
@@ -291,6 +307,10 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
 
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -305,10 +325,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			}
 		}
 
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
 		// do action based on current state
 		currentState.mouseReleased(e);
 
@@ -316,6 +332,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
 
+
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -330,10 +352,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			}
 		}
 
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
 		// do action based on current state
 		currentState.mouseEntered(e);
 
@@ -341,6 +359,20 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Because needs live update.
 		this.model.invokeCommand(this.constructCommand());
 
+
+
+	}
+
+	/**
+	 * Can't change the order. Otherwise, when Poly line is finished by exiting,
+	 * a mouse re-enter will keep revoking the command.
+	 *
+	 * maybe can do a double check here. Seems to work.
+	 *
+	 * @param e
+	 */
+	@Override
+	public void mouseExited(MouseEvent e) {
 		// encounter 2 situations
 		// Situation A: the previous mouse movement made a completed creation
 		if (currentState.isCompleted()){
@@ -355,10 +387,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			}
 		}
 
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
 		// do action based on current state
 		currentState.mouseExited(e);
 
@@ -413,7 +441,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 	// redo and undo
 	public void undo(){
-		model.revokeCommand();
+		model.undoCommand();
 	}
 
 	public void redo(){

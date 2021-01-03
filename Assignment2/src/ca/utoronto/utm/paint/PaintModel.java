@@ -18,7 +18,7 @@ public class PaintModel extends Observable {
 
 
 	private ArrayList<Command> commands = new ArrayList<Command>();
-	private int commandLog = 0; // index for already invoked command
+	private int commandLog = 0; // index for to-be invoked command
 	
 	
 	public void addPoint(Point p){
@@ -32,9 +32,11 @@ public class PaintModel extends Observable {
 	}
 
 	public void removePoint(Point point){
-		this.points.remove(point);
-		this.setChanged();
-		this.notifyObservers();
+		if (this.points.contains(point)) {
+			this.points.remove(point);
+			this.setChanged();
+			this.notifyObservers();
+		}
 	}
 
 	public void addShape(Shape shape){
@@ -48,9 +50,11 @@ public class PaintModel extends Observable {
 	}
 
 	public void removeShape(Shape shape){
-		this.shapes.remove(shape);
-		this.setChanged();
-		this.notifyObservers();
+		if(shapes.contains(shape)) {
+			this.shapes.remove(shape);
+			this.setChanged();
+			this.notifyObservers();
+		}
 	}
 
 	public void addLine(LineComponent line){
@@ -64,9 +68,11 @@ public class PaintModel extends Observable {
 	}
 
 	public void removeLine(LineComponent line){
-		this.lines.remove(line);
-		this.setChanged();
-		this.notifyObservers();
+		if(this.lines.contains(line)) {
+			this.lines.remove(line);
+			this.setChanged();
+			this.notifyObservers();
+		}
 	}
 
 	/**
@@ -77,10 +83,15 @@ public class PaintModel extends Observable {
 		if (command != null) {
 			command.execute();
 			this.commands.add(command);
-			commandLog += 1;
+			// move command to the last
+			// in case being undo in the middle
+			commandLog = commands.size();
 			// downsize
 			// this.downsizeCommands();
 		}
+		System.out.println(this.commands);
+		System.out.println(this.commands.size());
+		System.out.println(this.commandLog);
 	}
 
 	/**
@@ -100,9 +111,18 @@ public class PaintModel extends Observable {
 	 * Invoke the next command if there is command stored but not implemented.
 	 */
 	public void invokeNextCommand(){
-		if (commandLog < commands.size() - 1){
-			commandLog += 1;
+		if (commandLog < commands.size()){
 			commands.get(commandLog).execute();
+			commandLog += 1;
+		}
+	}
+
+	public void undoCommand(){
+		if ( !commands.isEmpty() && commands.get(commandLog - 1).isReversable()) {
+			commands.get(commandLog - 1).unexecute();
+			if (commandLog > 0) {
+				commandLog -= 1;
+			}
 		}
 	}
 
