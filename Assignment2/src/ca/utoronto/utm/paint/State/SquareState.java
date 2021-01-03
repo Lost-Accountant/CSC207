@@ -95,6 +95,8 @@ public class SquareState implements ShapeState{
     @Override
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
-        this.getCreation().setConfiguration(configuration);
+        if (this.getCreation() != null) {
+            this.getCreation().setConfiguration(configuration);
+        }
     }
 }

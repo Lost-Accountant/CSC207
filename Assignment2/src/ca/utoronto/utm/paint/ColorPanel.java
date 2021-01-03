@@ -12,13 +12,13 @@ public class ColorPanel extends JPanel implements ActionListener {
 
     private View view;
 
-    public ColorPanel(View view){
+    public ColorPanel(View view) {
         this.view = view;
 
         this.createColorButtons();
     }
 
-    public void createColorButtons(){
+    public void createColorButtons() {
         String[] colorLabels = {"Red", "Green", "Blue", "Black", "White", "Yellow", "Pink", "Orange"};
         this.setLayout(new GridLayout(colorLabels.length, 1));
         for (String label : colorLabels) {
@@ -30,9 +30,9 @@ public class ColorPanel extends JPanel implements ActionListener {
         }
     }
 
-    public Color getColor(String color){
+    public Color getColor(String color) {
         Color returnColor = null;
-        switch(color){
+        switch (color) {
             case "Red":
                 returnColor = Color.RED;
                 break;
@@ -65,8 +65,14 @@ public class ColorPanel extends JPanel implements ActionListener {
      * Controller aspect
      */
     @Override
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         System.out.println(e.getActionCommand());
-        this.view.getPaintPanel().setColor(getColor(e.getActionCommand()));
+
+        Color newColor = getColor(e.getActionCommand());
+
+        if (newColor != null) {
+            this.view.getPaintPanel().setColor(newColor);
+        }
+
     }
 }
