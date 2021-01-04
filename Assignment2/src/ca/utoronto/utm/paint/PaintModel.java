@@ -89,9 +89,9 @@ public class PaintModel extends Observable {
 			// downsize
 			// this.downsizeCommands();
 		}
-		System.out.println(this.commands);
-		System.out.println(this.commands.size());
-		System.out.println(this.commandLog);
+		//System.out.println(this.commands);
+		//System.out.println(this.commands.size());
+		//System.out.println(this.commandLog);
 	}
 
 	/**

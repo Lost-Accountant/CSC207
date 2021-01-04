@@ -135,6 +135,9 @@ public class View extends JFrame implements ActionListener {
 			case "Undo":
 				paintPanel.undo();
 				break;
+			case "Save":
+				paintPanel.save();
+				break;
 		}
 	}
 }

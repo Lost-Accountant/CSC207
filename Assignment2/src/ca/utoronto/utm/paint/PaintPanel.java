@@ -448,4 +448,9 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		model.invokeNextCommand();
 	}
 
+	// save and load
+	public void save(){
+		System.out.println("Not yet implemented.");
+	}
+
 }
