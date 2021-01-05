@@ -6,4 +6,6 @@ public interface Command {
     public void unexecute();
 
     public boolean isReversable();
+
+    public boolean isExecuted();
 }
