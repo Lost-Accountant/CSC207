@@ -117,13 +117,6 @@ public class PaintModel extends Observable {
 			this.removeAbandonedCommands(commandLog);
 
 		}
-		System.out.println(this.commands);
-		System.out.println(this.commands.size());
-		System.out.println(this.commandLog);
-
-		for (Command c: commands){
-			System.out.println(c.isExecuted());
-		}
 	}
 
 	/**

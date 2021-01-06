@@ -25,6 +25,9 @@ public class View extends JFrame implements ActionListener {
 	private LineThicknessPanel lineThicknessPanel;
 	private ColorPanel colorPanel;
 	private FillPanel fillPanel;
+
+	// Save
+	private FileManager fileManager;
 	
 	public View(PaintModel model) {
 		super("Paint"); // set the title and do other JFrame init
@@ -50,6 +53,9 @@ public class View extends JFrame implements ActionListener {
 		
 		this.paintPanel = new PaintPanel(model, this);
 		c.add(this.paintPanel, BorderLayout.CENTER);
+
+		// save file
+		this.fileManager = new FileManager();
 		
 		this.pack();
 		this.setSize(800,800);
@@ -67,6 +73,10 @@ public class View extends JFrame implements ActionListener {
 	public LineThicknessPanel getlineThicknessPanel() {return lineThicknessPanel;}
 
 	public ColorPanel getColorPanel(){return colorPanel;}
+
+	public PaintModel getModel(){
+		return model;
+	}
 
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
@@ -136,7 +146,7 @@ public class View extends JFrame implements ActionListener {
 				paintPanel.undo();
 				break;
 			case "Save":
-				paintPanel.save();
+				fileManager.save();
 				break;
 		}
 	}
