@@ -180,14 +180,14 @@ public class PaintModel extends Observable {
 	 * @param end the last command before
 	 */
 	public void removeAbandonedCommands(int end){
-		// use list iterator
-		ListIterator<Command> iter = commands.listIterator();
-		while(iter.hasNext() && iter.next() != commands.get(end)){
-			if(!iter.next().isExecuted()){
-				iter.remove();
+		// use sublist till commandLog index
+		// not use iterator because dynamically delete will ignore index 0 somehow.
+		ArrayList<Command> copyCommands = new ArrayList<Command>(commands.subList(0, commandLog));
+		for (Command command: copyCommands){
+			if (!command.isExecuted()){
+				commands.remove(command);
+				commandLog -= 1;
 			}
 		}
-
-		// index 0 unexecuted but not removed (probably related to index out of bound execption)
 	}
 }
