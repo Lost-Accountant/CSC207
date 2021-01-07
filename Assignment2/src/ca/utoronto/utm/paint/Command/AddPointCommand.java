@@ -32,4 +32,12 @@ public class AddPointCommand implements Command{
     public boolean isExecuted() {
         return executed;
     }
+
+    public Point getPoint(){
+        return point;
+    }
+
+    public String toString(){
+        return "Point, " + point.toString();
+    }
 }

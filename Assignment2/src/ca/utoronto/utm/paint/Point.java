@@ -38,4 +38,13 @@ public class Point {
     public int getDistance(Point p1){
         return (int) Math.hypot(Math.abs(this.getX() - p1.getX()), Math.abs(this.getY() - p1.getY()));
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                ", configuration=" + configuration.toString() +
+                '}';
+    }
 }

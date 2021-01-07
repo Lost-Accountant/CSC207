@@ -55,7 +55,7 @@ public class View extends JFrame implements ActionListener {
 		c.add(this.paintPanel, BorderLayout.CENTER);
 
 		// save file
-		this.fileManager = new FileManager();
+		this.fileManager = new FileManager(this);
 		
 		this.pack();
 		this.setSize(800,800);

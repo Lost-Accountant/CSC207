@@ -33,4 +33,20 @@ public class AddLineCommand implements Command{
     public boolean isExecuted() {
         return executed;
     }
+
+    public LineComponent getLine(){
+        return line;
+    }
+
+    public String toString(){
+        String type = "Line";
+
+        String lineType = "";
+
+        String config = this.getLine().getConfiguration().toString();
+
+
+
+        return "";
+    }
 }

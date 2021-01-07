@@ -32,4 +32,12 @@ public class AddShapeCommand implements Command{
     public boolean isExecuted() {
         return executed;
     }
+
+    public Shape getShape(){
+        return shape;
+    }
+
+    public String toString(){
+        return "";
+    }
 }

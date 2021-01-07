@@ -8,4 +8,6 @@ public interface Command {
     public boolean isReversable();
 
     public boolean isExecuted();
+
+    public String toString();
 }

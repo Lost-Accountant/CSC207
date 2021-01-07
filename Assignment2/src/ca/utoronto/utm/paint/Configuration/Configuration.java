@@ -38,4 +38,10 @@ public class Configuration {
     public int getLineThickness() {
         return lineThickness;
     }
+
+    public String toString(){
+        return ("(" + color.toString() + ", "
+                + String.valueOf(lineThickness) + ", "
+                + Boolean.toString(isFilled) + ")");
+    }
 }
