@@ -49,4 +49,13 @@ public class Line implements LineComponent {
     public Configuration getConfiguration() {
         return configuration;
     }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "startPoint=" + startPoint.toStringSimplified() +
+                ", endPoint=" + endPoint.toStringSimplified() +
+                ", configuration=" + configuration.toString() +
+                '}';
+    }
 }

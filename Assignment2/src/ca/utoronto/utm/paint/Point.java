@@ -42,9 +42,13 @@ public class Point {
     @Override
     public String toString() {
         return "Point{" +
-                "x=" + x +
-                ", y=" + y +
+                "(" + x + ", " +
+                 + y + ")" +
                 ", configuration=" + configuration.toString() +
                 '}';
+    }
+
+    public String toStringSimplified(){
+        return "(" + x + ", " + y + ")";
     }
 }

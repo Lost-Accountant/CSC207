@@ -60,4 +60,18 @@ public class PolyLine implements LineComponent{
     public Configuration getConfiguration() {
         return configuration;
     }
+
+    @Override
+    public String toString() {
+        String pointsList = "[";
+        for (Point point: points){
+            pointsList += point.toStringSimplified() + ", ";
+        }
+        pointsList += "]";
+
+        return "PolyLine{" +
+                "points=" + pointsList +
+                ", configuration=" + configuration +
+                '}';
+    }
 }

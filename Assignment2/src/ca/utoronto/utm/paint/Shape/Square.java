@@ -24,4 +24,14 @@ public class Square extends Rectangle{
         super.setHeight(height);
         super.setWidth(height); // ensure same width and height
     }
+
+    @Override
+    public String toString() {
+        return "Square{" +
+                "centre=" + super.getCentre().toStringSimplified() +
+                ", width=" + super.getWidth() +
+                ", height=" + super.getHeight() +
+                ", configuration=" + super.getConfiguration() +
+                '}';
+    }
 }

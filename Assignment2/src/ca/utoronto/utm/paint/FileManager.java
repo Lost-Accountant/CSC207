@@ -52,9 +52,7 @@ public class FileManager {
 
             // write each command's attributes
             for (Command command : view.getModel().getCommands()) {
-                if (command instanceof AddPointCommand){
                     commandWriter.println(command.toString());
-                }
             }
             commandWriter.close();
 

@@ -39,14 +39,6 @@ public class AddLineCommand implements Command{
     }
 
     public String toString(){
-        String type = "Line";
-
-        String lineType = "";
-
-        String config = this.getLine().getConfiguration().toString();
-
-
-
-        return "";
+        return "Line, " + line.toString();
     }
 }

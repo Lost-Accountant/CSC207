@@ -59,4 +59,13 @@ public class Circle implements Shape{
     public Configuration getConfiguration() {
         return configuration;
     }
+
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "centre=" + centre.toStringSimplified() +
+                ", radius=" + radius +
+                ", configuration=" + configuration +
+                '}';
+    }
 }

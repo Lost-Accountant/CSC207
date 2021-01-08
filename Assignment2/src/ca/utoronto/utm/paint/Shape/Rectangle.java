@@ -51,4 +51,14 @@ public class Rectangle implements Shape{
     public Configuration getConfiguration() {
         return configuration;
     }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "centre=" + centre.toStringSimplified() +
+                ", width=" + width +
+                ", height=" + height +
+                ", configuration=" + configuration +
+                '}';
+    }
 }

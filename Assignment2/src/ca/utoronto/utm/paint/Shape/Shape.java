@@ -21,4 +21,6 @@ public interface Shape {
     public void setConfiguration(Configuration config);
 
     public Configuration getConfiguration();
+
+    public String toString();
 }

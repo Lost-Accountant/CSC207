@@ -38,6 +38,6 @@ public class AddShapeCommand implements Command{
     }
 
     public String toString(){
-        return "";
+        return "Shape, " + shape.toString();
     }
 }

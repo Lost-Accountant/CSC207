@@ -19,4 +19,6 @@ public interface LineComponent {
     public void setConfiguration(Configuration configuration);
 
     public Configuration getConfiguration();
+
+    public String toString();
 }
