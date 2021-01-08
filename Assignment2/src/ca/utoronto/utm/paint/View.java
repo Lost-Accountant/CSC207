@@ -148,6 +148,9 @@ public class View extends JFrame implements ActionListener {
 			case "Save":
 				fileManager.save();
 				break;
+			case "Open":
+				fileManager.load();
+				break;
 		}
 	}
 }

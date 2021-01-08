@@ -14,12 +14,12 @@ public class FileManager {
 
     public FileManager(View view){
         this.fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Save your paint somewhere");
         this.view = view;
 
     }
 
     public void save(){
+        fileChooser.setDialogTitle("Save your paint somewhere");
         // show directories only
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
@@ -35,7 +35,15 @@ public class FileManager {
     }
 
     public void load(){
+        fileChooser.setDialogTitle("Load your saved paint record");
+        // show all files
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
+        int returnVal = fileChooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            readSaveFile(file);
+        }
     }
 
     public File createSaveFile(String filePath){
@@ -63,7 +71,25 @@ public class FileManager {
     }
 
     public void readSaveFile(File file){
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String line = reader.readLine();
+            while (line != null){
+                System.out.println(line);
+                line = reader.readLine();
+            }
 
+        } catch (IOException e){
+            System.out.println("Error occurred");
+            e.printStackTrace();
+        }
     }
+
+    // read command
+    // read shape
+    // read configuration
+    // read point
+    // read line
 
 }
