@@ -11,10 +11,12 @@ public class FileManager {
 
     private JFileChooser fileChooser;
     private View view;
+    private FileDecoder decoder;
 
     public FileManager(View view){
         this.fileChooser = new JFileChooser();
         this.view = view;
+        this.decoder = new FileDecoder();
 
     }
 
@@ -77,6 +79,8 @@ public class FileManager {
             String line = reader.readLine();
             while (line != null){
                 System.out.println(line);
+                decoder.recognizeCommand(line);
+                decoder.recognizeConfiguration(line);
                 line = reader.readLine();
             }
 
@@ -84,6 +88,14 @@ public class FileManager {
             System.out.println("Error occurred");
             e.printStackTrace();
         }
+    }
+
+    public Command constructCommand(String commandType){
+        if (commandType == "Point"){
+            AddPointCommand pointCommand = new AddPointCommand(this.view.getModel(), null);
+        }
+
+        return null;
     }
 
     // read command
