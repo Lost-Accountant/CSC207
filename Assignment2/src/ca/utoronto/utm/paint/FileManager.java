@@ -2,6 +2,7 @@ package ca.utoronto.utm.paint;
 
 import ca.utoronto.utm.paint.Command.AddLineCommand;
 import ca.utoronto.utm.paint.Command.AddPointCommand;
+import ca.utoronto.utm.paint.Command.AddShapeCommand;
 import ca.utoronto.utm.paint.Command.Command;
 
 import javax.swing.*;
@@ -56,7 +57,7 @@ public class FileManager {
         return saveFile;
     }
 
-    public void saveCommands(File file){
+    private void saveCommands(File file){
         try {
             PrintStream commandWriter = new PrintStream(file);
 
@@ -72,15 +73,19 @@ public class FileManager {
         }
     }
 
-    public void readSaveFile(File file){
+    private void readSaveFile(File file){
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(file));
             String line = reader.readLine();
             while (line != null){
                 System.out.println(line);
-                decoder.recognizeCommand(line);
-                decoder.recognizeConfiguration(line);
+
+                // construct and execute the command
+                Command constructedCommand = decoder.recognizeCommand(line, view.getModel());
+                view.getModel().invokeCommand(constructedCommand);
+
+                // read next line
                 line = reader.readLine();
             }
 
@@ -89,19 +94,4 @@ public class FileManager {
             e.printStackTrace();
         }
     }
-
-    public Command constructCommand(String commandType){
-        if (commandType == "Point"){
-            AddPointCommand pointCommand = new AddPointCommand(this.view.getModel(), null);
-        }
-
-        return null;
-    }
-
-    // read command
-    // read shape
-    // read configuration
-    // read point
-    // read line
-
 }
