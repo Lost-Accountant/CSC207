@@ -8,6 +8,7 @@ import ca.utoronto.utm.paint.Configuration.Configuration;
 import ca.utoronto.utm.paint.Line.LineComponent;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -88,9 +89,16 @@ public class FileDecoder {
         return null;
     }
 
-    private Point recognizePointSimplified(String line){
+    private ArrayList<Point> recognizePoints(String line){
         Pattern simplePointPattern = Pattern.compile("\\(\\d+\\,\\s\\d+\\)\\,");
+        ArrayList<Point> collectedPoints = new ArrayList<Point>();
+        // find section
+        Matcher simplePointMatcher = simplePointPattern.matcher(line);
+        if(simplePointMatcher.find()){
+            System.out.println(simplePointMatcher.group(0));
+            // a loop to collect all points. group.size()
 
+        }
         return null;
     }
 
