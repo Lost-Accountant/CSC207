@@ -53,9 +53,9 @@ public class Line implements LineComponent {
     @Override
     public String toString() {
         return "Line{" +
-                "startPoint=" + startPoint.toStringSimplified() +
-                ", endPoint=" + endPoint.toStringSimplified() +
-                ", configuration=" + configuration.toString() +
+                "points=["+ startPoint.toStringSimplified() + ", " +
+                endPoint.toStringSimplified() + ", " +
+                "], configuration=" + configuration.toString() +
                 '}';
     }
 }
