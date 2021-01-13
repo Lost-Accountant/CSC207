@@ -44,7 +44,7 @@ public class FileDecoder {
 
             // step 4: construct and deliver the command
             constructedCommand = constructCommand(commandType, creation, model);
-            System.out.println(constructedCommand);
+            //System.out.println(constructedCommand);
             return constructedCommand;
         }
         return null;
@@ -130,9 +130,7 @@ public class FileDecoder {
     }
 
     private Point recognizePoint(String line){
-        // create Point
-
-        return null;
+        return recognizePoints(line).get(0);
     }
 
     private ArrayList<Point> recognizePoints(String line){
