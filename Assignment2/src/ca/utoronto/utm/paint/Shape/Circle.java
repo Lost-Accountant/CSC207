@@ -64,7 +64,8 @@ public class Circle implements Shape{
     public String toString() {
         return "Circle{" +
                 "centre=" + centre.toStringSimplified() +
-                ", radius=" + radius +
+                ", width=" + getWidth() +
+                ", height=" + getHeight() +
                 ", configuration=" + configuration +
                 '}';
     }

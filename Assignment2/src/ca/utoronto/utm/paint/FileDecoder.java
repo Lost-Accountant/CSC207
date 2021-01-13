@@ -125,14 +125,42 @@ public class FileDecoder {
 
     public Shape recognizeShape(String line){
         // judge specific shape
+        Matcher shapeMatcher = Pattern.compile(",\\s([A-z][a-z]+)\\{").matcher(line);
+        if(shapeMatcher.find()){
+            String shapeType = shapeMatcher.group(1);
+            // collect center
+            Point centre = recognizePoint(line);
+            System.out.println(centre);
+
+            // collect width
+
+            // collect height
+
+
+            // separate situations based on shape type
+            if (shapeType.equals("Circle")){
+
+            }
+        }
 
         return null;
     }
 
+    /**
+     * Used by recognizeShape.
+     * Extract the point when the line was simply storing for a point.
+     * @param line
+     * @return
+     */
     private Point recognizePoint(String line){
         return recognizePoints(line).get(0);
     }
 
+    /**
+     * Collect all points stored in a line.
+     * @param line
+     * @return
+     */
     private ArrayList<Point> recognizePoints(String line){
         Pattern simplePointPattern = Pattern.compile("\\(\\d+\\,\\s\\d+\\)\\,");
         ArrayList<Point> collectedPoints = new ArrayList<Point>();
