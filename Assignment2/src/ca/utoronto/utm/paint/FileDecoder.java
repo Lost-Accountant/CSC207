@@ -9,6 +9,9 @@ import ca.utoronto.utm.paint.Line.Line;
 import ca.utoronto.utm.paint.Line.LineComponent;
 import ca.utoronto.utm.paint.Line.PolyLine;
 import ca.utoronto.utm.paint.Line.Squiggle;
+import ca.utoronto.utm.paint.Shape.Circle;
+import ca.utoronto.utm.paint.Shape.Shape;
+import ca.utoronto.utm.paint.Shape.Square;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -40,11 +43,9 @@ public class FileDecoder {
 
             // step 3: find out about the object
             Object creation = recognizeObject(line, commandType);
-            //System.out.println(creation);
 
             // step 4: construct and deliver the command
             constructedCommand = constructCommand(commandType, creation, model);
-            //System.out.println(constructedCommand);
             return constructedCommand;
         }
         return null;
@@ -123,28 +124,62 @@ public class FileDecoder {
         return null;
     }
 
-    public Shape recognizeShape(String line){
+    public ca.utoronto.utm.paint.Shape.Shape recognizeShape(String line){
         // judge specific shape
         Matcher shapeMatcher = Pattern.compile(",\\s([A-z][a-z]+)\\{").matcher(line);
         if(shapeMatcher.find()){
             String shapeType = shapeMatcher.group(1);
             // collect center
             Point centre = recognizePoint(line);
-            System.out.println(centre);
 
             // collect width
-
+            int width = recognizeWidth(line);
             // collect height
-
+            int height = recognizeHeight(line);
+            // collect configuration
+            Configuration configStored = recognizeConfiguration(line);
 
             // separate situations based on shape type
             if (shapeType.equals("Circle")){
-
+                return new Circle(centre, width/2, configStored);
+            } else if (shapeType.equals("Rectangle")){
+                return new ca.utoronto.utm.paint.Shape.Rectangle(centre, height, width, configStored);
+            } else if (shapeType.equals("Square")){
+                return new Square(centre, width, configStored);
             }
         }
 
         return null;
     }
+
+    /**
+     * Helper function on finding height for a shape
+     * @param line
+     * @return
+     */
+    private int recognizeHeight(String line){
+        Matcher heightMatcher = Pattern.compile("height\\=(\\d+)\\,").matcher(line);
+        if (heightMatcher.find()){
+            return Integer.parseInt(heightMatcher.group(1));
+        } else {
+            return -1;
+        }
+    }
+
+    /**
+     * Helper function on finding width for a shape
+     * @param line
+     * @return
+     */
+    private int recognizeWidth(String line){
+        Matcher widthMatcher = Pattern.compile("width\\=(\\d+)\\,").matcher(line);
+        if (widthMatcher.find()){
+            return Integer.parseInt(widthMatcher.group(1));
+        } else {
+            return -1;
+        }
+    }
+
 
     /**
      * Used by recognizeShape.
