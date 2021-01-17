@@ -10,6 +10,10 @@
                 for (b = 0.00; b < 7.11; b = b + .01) {
                     for (c = 0.00; c < 7.11; c = c + .01) {
                         for (d = 0.00; d < 7.11; d = d + .01) {
+                            System.out.println(a);
+                            System.out.println(b);
+                            System.out.println(c);
+                            System.out.println(d);
                             if (a * b * c * d == 7.11 && a + b + c + d == 7.11) {
                                 return (a + " " + b + " " + c + " " + d);
                             }
